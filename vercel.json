@@ -13,7 +13,8 @@
         { "src": "/docs/(.*)", "dest": "/api/docs/$1" },
         { "src": "/data/(.*)", "dest": "/api/data/$1" },
         { "src": "/php/(.*)", "dest": "/api/php/$1" },
-        { "src": "/(.*)\\.html", "dest": "/api/$1.html" },
+        { "src": "/public/(.*)", "dest": "/api/public/$1" },
+        { "src": "/(.*)\\.html", "dest": "/api/public/$1.html" },
         { "src": "/(.*)\\.php", "dest": "/api/$1.php" },
         { "src": "/(.*)", "dest": "/api/index.php" }
     ]
