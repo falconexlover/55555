@@ -51,7 +51,15 @@
     <section class="hero hero-section">
         <div class="slide-container">
             <div class="slide">
-                <img src="/assets/images/hotel-main.jpg" alt="Отель Лесной дворик">
+                <picture>
+                    <source srcset="/assets/images/hotel-main.webp" type="image/webp" media="(min-width: 1200px)">
+                    <source srcset="/assets/images/hotel-main-medium.webp" type="image/webp" media="(min-width: 768px)">
+                    <source srcset="/assets/images/hotel-main-small.webp" type="image/webp" media="(max-width: 767px)">
+                    <source srcset="/assets/images/hotel-main.jpg" type="image/jpeg" media="(min-width: 1200px)">
+                    <source srcset="/assets/images/hotel-main-medium.jpg" type="image/jpeg" media="(min-width: 768px)">
+                    <source srcset="/assets/images/hotel-main-small.jpg" type="image/jpeg" media="(max-width: 767px)">
+                    <img src="/assets/images/hotel-main.jpg" alt="Отель Лесной дворик" loading="eager">
+                </picture>
                 <div class="slide-content">
                     <h1>Добро пожаловать в "Лесной дворик"</h1>
                     <p>Идеальное место для отдыха в гармонии с природой</p>
@@ -70,7 +78,11 @@
             <h2>О нас</h2>
             <div class="about-content">
                 <div class="about-image">
-                    <img src="/assets/images/about.jpg" alt="О нашей гостинице">
+                    <picture>
+                        <source srcset="/assets/images/about.webp" type="image/webp">
+                        <source srcset="/assets/images/about.jpg" type="image/jpeg">
+                        <img src="/assets/images/about.jpg" alt="О нашей гостинице" loading="lazy">
+                    </picture>
                 </div>
                 <div class="about-text">
                     <p>Гостиница "Лесной дворик" - это уютное место, расположенное в живописном уголке природы, где вы сможете насладиться комфортным отдыхом вдали от городской суеты.</p>
@@ -127,7 +139,11 @@
             <div class="offers-grid">
                 <div class="offer-card">
                     <div class="offer-image">
-                        <img src="/assets/images/romantic.jpg" alt="Романтический уик-энд">
+                        <picture>
+                            <source srcset="/assets/images/romantic.webp" type="image/webp">
+                            <source srcset="/assets/images/romantic.jpg" type="image/jpeg">
+                            <img src="/assets/images/romantic.jpg" alt="Романтический уик-энд" loading="lazy">
+                        </picture>
                         <div class="offer-badge">Только до 31 мая</div>
                     </div>
                     <div class="offer-content">
@@ -139,7 +155,11 @@
                 </div>
                 <div class="offer-card">
                     <div class="offer-image">
-                        <img src="/assets/images/family.jpg" alt="Семейный отдых">
+                        <picture>
+                            <source srcset="/assets/images/family.webp" type="image/webp">
+                            <source srcset="/assets/images/family.jpg" type="image/jpeg">
+                            <img src="/assets/images/family.jpg" alt="Семейный отдых" loading="lazy">
+                        </picture>
                         <div class="offer-badge">Новинка</div>
                     </div>
                     <div class="offer-content">
@@ -392,5 +412,124 @@
 
     <script src="js/script.js"></script>
     <script src="https://api-maps.yandex.ru/2.1/?apikey=c5d63a69-5e76-4362-9b61-4247b5349ac9&lang=ru_RU"></script>
+    
+    <!-- 
+    Инструкции по оптимизации изображений:
+    
+    1. Создание WebP-версий изображений:
+       - Установите пакет cwebp: npm install -g cwebp-bin
+       - Для каждого изображения создайте WebP-версию:
+         cwebp -q 80 assets/images/image.jpg -o assets/images/image.webp
+    
+    2. Создание разных размеров изображений:
+       - Для главного баннера:
+         - hotel-main.jpg (1920x1080px) - оригинал
+         - hotel-main-medium.jpg (1280x720px) - средний размер
+         - hotel-main-small.jpg (768x432px) - маленький размер
+       
+       - Для остальных изображений достаточно одного размера и WebP-версии
+    
+    3. Проверка поддержки WebP:
+       - Современные браузеры автоматически выберут подходящий формат
+       - Для старых браузеров будет использоваться JPEG/PNG
+    -->
+    
+    <!-- Скрипт для автоматической конвертации изображений (только для разработки) -->
+    <script>
+    /*
+    // Раскомментируйте и запустите в консоли Node.js для автоматической конвертации
+    const fs = require('fs');
+    const path = require('path');
+    const { execSync } = require('child_process');
+    
+    // Пути к директориям с изображениями
+    const imageDirectories = [
+        'assets/images',
+        'assets/images/rooms',
+        'assets/images/gallery'
+    ];
+    
+    // Функция для создания WebP-версий
+    function convertToWebP(directory) {
+        const files = fs.readdirSync(directory);
+        
+        files.forEach(file => {
+            const filePath = path.join(directory, file);
+            const stat = fs.statSync(filePath);
+            
+            if (stat.isDirectory()) {
+                // Рекурсивно обрабатываем поддиректории
+                convertToWebP(filePath);
+            } else {
+                // Проверяем, является ли файл изображением
+                const ext = path.extname(file).toLowerCase();
+                if (['.jpg', '.jpeg', '.png'].includes(ext)) {
+                    const baseName = path.basename(file, ext);
+                    const webpPath = path.join(directory, `${baseName}.webp`);
+                    
+                    // Проверяем, существует ли уже WebP-версия
+                    if (!fs.existsSync(webpPath)) {
+                        console.log(`Конвертация ${filePath} в WebP...`);
+                        try {
+                            execSync(`cwebp -q 80 "${filePath}" -o "${webpPath}"`);
+                            console.log(`Создан файл: ${webpPath}`);
+                        } catch (error) {
+                            console.error(`Ошибка при конвертации ${filePath}:`, error.message);
+                        }
+                    }
+                }
+            }
+        });
+    }
+    
+    // Функция для создания разных размеров изображений
+    function createImageSizes() {
+        const mainImage = 'assets/images/hotel-main.jpg';
+        if (fs.existsSync(mainImage)) {
+            // Создаем средний размер
+            const mediumImage = 'assets/images/hotel-main-medium.jpg';
+            if (!fs.existsSync(mediumImage)) {
+                console.log(`Создание среднего размера для ${mainImage}...`);
+                try {
+                    execSync(`convert "${mainImage}" -resize 1280x720 "${mediumImage}"`);
+                    console.log(`Создан файл: ${mediumImage}`);
+                    
+                    // Создаем WebP-версию среднего размера
+                    execSync(`cwebp -q 80 "${mediumImage}" -o "assets/images/hotel-main-medium.webp"`);
+                } catch (error) {
+                    console.error(`Ошибка при создании среднего размера:`, error.message);
+                }
+            }
+            
+            // Создаем маленький размер
+            const smallImage = 'assets/images/hotel-main-small.jpg';
+            if (!fs.existsSync(smallImage)) {
+                console.log(`Создание маленького размера для ${mainImage}...`);
+                try {
+                    execSync(`convert "${mainImage}" -resize 768x432 "${smallImage}"`);
+                    console.log(`Создан файл: ${smallImage}`);
+                    
+                    // Создаем WebP-версию маленького размера
+                    execSync(`cwebp -q 80 "${smallImage}" -o "assets/images/hotel-main-small.webp"`);
+                } catch (error) {
+                    console.error(`Ошибка при создании маленького размера:`, error.message);
+                }
+            }
+        }
+    }
+    
+    // Запускаем конвертацию
+    imageDirectories.forEach(dir => {
+        if (fs.existsSync(dir)) {
+            convertToWebP(dir);
+        } else {
+            console.warn(`Директория ${dir} не существует`);
+        }
+    });
+    
+    // Создаем разные размеры для главного изображения
+    createImageSizes();
+    */
+    </script>
 </body>
 </html> 

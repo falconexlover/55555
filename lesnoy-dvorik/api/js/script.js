@@ -791,4 +791,99 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     });
+
+    // Функция для ленивой загрузки изображений
+    function lazyLoadImages() {
+        // Проверяем поддержку IntersectionObserver
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    // Если элемент виден
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        
+                        // Если это изображение внутри picture
+                        if (img.tagName === 'IMG' && img.parentNode.tagName === 'PICTURE') {
+                            const sources = img.parentNode.querySelectorAll('source');
+                            
+                            // Загружаем все source
+                            sources.forEach(source => {
+                                source.srcset = source.dataset.srcset;
+                            });
+                            
+                            // Загружаем само изображение
+                            img.src = img.dataset.src;
+                            img.classList.add('loaded');
+                        } 
+                        // Если это обычное изображение
+                        else if (img.tagName === 'IMG') {
+                            img.src = img.dataset.src;
+                            img.classList.add('loaded');
+                        }
+                        
+                        // Прекращаем наблюдение после загрузки
+                        observer.unobserve(img);
+                    }
+                });
+            });
+            
+            // Находим все изображения для ленивой загрузки
+            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+            lazyImages.forEach(img => {
+                // Сохраняем исходный src в data-атрибуте
+                if (!img.dataset.src) {
+                    img.dataset.src = img.src;
+                    // Очищаем src для предотвращения загрузки
+                    img.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"%3E%3C/svg%3E';
+                }
+                
+                // Если изображение внутри picture
+                if (img.parentNode.tagName === 'PICTURE') {
+                    const sources = img.parentNode.querySelectorAll('source');
+                    sources.forEach(source => {
+                        // Сохраняем srcset в data-атрибуте
+                        if (!source.dataset.srcset && source.srcset) {
+                            source.dataset.srcset = source.srcset;
+                            // Очищаем srcset для предотвращения загрузки
+                            source.srcset = '';
+                        }
+                    });
+                }
+                
+                // Начинаем наблюдение
+                imageObserver.observe(img);
+            });
+        } 
+        // Запасной вариант для браузеров без поддержки IntersectionObserver
+        else {
+            // Простая загрузка всех изображений
+            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+            lazyImages.forEach(img => {
+                img.src = img.dataset.src || img.src;
+                
+                if (img.parentNode.tagName === 'PICTURE') {
+                    const sources = img.parentNode.querySelectorAll('source');
+                    sources.forEach(source => {
+                        source.srcset = source.dataset.srcset || source.srcset;
+                    });
+                }
+            });
+        }
+    }
+
+    // Запускаем ленивую загрузку после загрузки DOM
+    document.addEventListener('DOMContentLoaded', lazyLoadImages);
+
+    // Добавляем стили для плавного появления изображений
+    const lazyLoadStyle = document.createElement('style');
+    lazyLoadStyle.textContent = `
+        img.loaded {
+            animation: fadeIn 0.5s;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    `;
+    document.head.appendChild(lazyLoadStyle);
 }); 
