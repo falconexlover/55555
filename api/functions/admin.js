@@ -1,7 +1,8 @@
-// Функция Netlify для обработки запросов к админ-панели
+// Импортируем необходимые модули
+const { MongoClient, ObjectId } = require('mongodb');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const { MongoClient, ObjectId } = require('mongodb');
+const { Handler } = require('@netlify/functions');
 
 // Константы для конфигурации
 const JWT_SECRET = process.env.JWT_SECRET || 'lesnoy-dvorik-secret-key';
@@ -383,7 +384,7 @@ const getAdminPage = (userData) => {
   `;
 };
 
-// Главная функция обработки запросов
+// Обновленный экспорт функции с использованием современного формата Netlify Functions
 exports.handler = async (event, context) => {
   // Проверяем путь запроса
   const path = event.path.replace('/.netlify/functions/admin', '');

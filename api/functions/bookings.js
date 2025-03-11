@@ -1,6 +1,7 @@
 // Функция Netlify для обработки запросов бронирования
 const { MongoClient, ObjectId } = require('mongodb');
 const jwt = require('jsonwebtoken');
+const { Handler } = require('@netlify/functions');
 
 // Константы для конфигурации
 const JWT_SECRET = process.env.JWT_SECRET || 'lesnoy-dvorik-default-secret-key';
@@ -726,7 +727,7 @@ const handleDelete = async (event) => {
   }
 };
 
-// Главная функция обработки запросов
+// Обновленный экспорт функции с использованием современного формата Netlify Functions
 exports.handler = async (event, context) => {
   const headers = {
     'Content-Type': 'application/json',
