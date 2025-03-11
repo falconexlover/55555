@@ -1,38 +1,50 @@
 {
     "version": 2,
-    "functions": {
-        "api/**/*.php": {
-            "runtime": "vercel-php@0.6.0"
-        }
-    },
     "builds": [
         { "src": "api/vercel.php", "use": "vercel-php@0.6.0" },
         { "src": "api/**/*.php", "use": "vercel-php@0.6.0" },
         { "src": "api/public/**", "use": "@vercel/static" }
     ],
     "routes": [
-        { "src": "/", "dest": "/api/public/index.html" },
-        { "src": "/index.html", "dest": "/api/public/index.html" },
+        { 
+            "src": "/assets/(.*)\\.(?:jpg|jpeg|gif|png|svg|webp)", 
+            "dest": "/api/assets/$1.$2",
+            "headers": { "Cache-Control": "public, max-age=31536000, immutable" }
+        },
+        { 
+            "src": "/css/(.*)\\.css", 
+            "dest": "/api/css/$1.css",
+            "headers": { "Cache-Control": "public, max-age=86400" }
+        },
+        { 
+            "src": "/js/(.*)\\.js", 
+            "dest": "/api/js/$1.js",
+            "headers": { "Cache-Control": "public, max-age=86400" }
+        },
         { "src": "/admin", "dest": "/api/admin/index.php" },
         { "src": "/admin/(.*)", "dest": "/api/admin/$1" },
-        { "src": "/admin/index.php", "dest": "/api/admin/index.php" },
-        { "src": "/admin/login_form.php", "dest": "/api/admin/login_form.php" },
-        { "src": "/assets/(.*)", "dest": "/api/assets/$1" },
-        { "src": "/css/(.*)", "dest": "/api/css/$1" },
-        { "src": "/js/(.*)", "dest": "/api/js/$1" },
-        { "src": "/includes/(.*)", "dest": "/api/includes/$1" },
+        { "src": "/(.*)\\.html", "dest": "/api/public/$1.html" },
+        { "src": "/(.*)\\.php", "dest": "/api/$1.php" },
         { "src": "/pages/(.*)", "dest": "/api/pages/$1" },
         { "src": "/errors/(.*)", "dest": "/api/errors/$1" },
         { "src": "/docs/(.*)", "dest": "/api/docs/$1" },
-        { "src": "/php/(.*)", "dest": "/api/php/$1" },
-        { "src": "/public/(.*)", "dest": "/api/public/$1" },
-        { "src": "/(.*)\\.html", "dest": "/api/public/$1.html" },
-        { "src": "/(.*)\\.php", "dest": "/api/$1.php" },
+        { "src": "/includes/(.*)", "dest": "/api/includes/$1" },
+        { "src": "/", "dest": "/api/public/index.html" },
         { "src": "/(.*)", "dest": "/api/public/index.html" }
     ],
     "env": {
         "PHP_VERSION": "8.0",
         "PHP_MEMORY_LIMIT": "128M",
-        "DEBUG": "true"
-    }
+        "DEBUG": "false"
+    },
+    "headers": [
+        {
+            "source": "/(.*)",
+            "headers": [
+                { "key": "X-Content-Type-Options", "value": "nosniff" },
+                { "key": "X-Frame-Options", "value": "DENY" },
+                { "key": "X-XSS-Protection", "value": "1; mode=block" }
+            ]
+        }
+    ]
 } 

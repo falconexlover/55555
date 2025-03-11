@@ -1,12 +1,13 @@
 {
   "name": "lesnoy-dvorik-hotel",
   "version": "1.0.0",
-  "description": "Гостиница 'Лесной дворик' - Веб-сайт",
+  "description": "Гостиница 'Лесной дворик' - Официальный сайт",
   "main": "api/public/index.html",
   "scripts": {
     "start": "vercel dev",
     "build": "echo 'Build completed'",
-    "deploy": "vercel --prod"
+    "deploy": "vercel --prod",
+    "lint": "echo 'No linting configured'"
   },
   "engines": {
     "node": ">=14.x"
@@ -15,8 +16,18 @@
     "vercel-php": "^0.6.0"
   },
   "devDependencies": {
-    "vercel": "^28.0.0"
+    "vercel": "^28.20.0"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/falconexlover/55555.git"
+  },
+  "keywords": [
+    "hotel",
+    "booking",
+    "vercel",
+    "php"
+  ],
+  "author": "Лесной дворик",
   "license": "MIT"
 } 

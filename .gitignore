@@ -1,8 +1,47 @@
+# Vercel
 .vercel
 node_modules
+
+# Окружение
 .env
 .env.local
+.env.development
+.env.test
+.env.production
+
+# Временные файлы и логи
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs
+*.tmp
+*.swp
+*.swo
+
+# Файлы операционной системы
 .DS_Store
 Thumbs.db
+desktop.ini
+
+# Временные файлы Git
 tatus
-ershehexd420DesktopSiteWeb 
+ershehexd420DesktopSiteWeb
+
+# Файлы резервных копий
+*.bak
+*.backup
+*~
+
+# Кэш и локальные файлы IDE
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+.project
+.classpath
+.settings/
+
+# Файлы загрузок и пользовательские данные
+api/public/uploads/*
+!api/public/uploads/.gitkeep 
