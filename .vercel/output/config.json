@@ -1,0 +1,27 @@
+{
+  "version": 3,
+  "routes": [
+    { "src": "/admin/index.php", "dest": "/api/admin/index.php" },
+    { "src": "/admin/login_form.php", "dest": "/api/admin/login_form.php" },
+    { "src": "/admin", "dest": "/api/admin/index.php" },
+    { "src": "/admin/(.*)", "dest": "/api/admin/$1" },
+    { "src": "/assets/(.*)", "dest": "/api/assets/$1" },
+    { "src": "/css/(.*)", "dest": "/api/css/$1" },
+    { "src": "/js/(.*)", "dest": "/api/js/$1" },
+    { "src": "/includes/(.*)", "dest": "/api/includes/$1" },
+    { "src": "/pages/(.*)", "dest": "/api/pages/$1" },
+    { "src": "/errors/(.*)", "dest": "/api/errors/$1" },
+    { "src": "/docs/(.*)", "dest": "/api/docs/$1" },
+    { "src": "/data/(.*)", "dest": "/api/data/$1" },
+    { "src": "/php/(.*)", "dest": "/api/php/$1" },
+    { "src": "/public/(.*)", "dest": "/api/public/$1" },
+    { "src": "/(.*)\\.html", "dest": "/api/public/$1.html" },
+    { "src": "/(.*)\\.php", "dest": "/api/$1.php" },
+    { "src": "/(.*)", "dest": "/api/vercel.php" }
+  ],
+  "overrides": {
+    "api/**/*.php": {
+      "runtime": "vercel-php@0.6.0"
+    }
+  }
+} 

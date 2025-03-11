@@ -1,0 +1,17 @@
+{
+  "name": "lesnoydvorik-hotel",
+  "version": "1.0.0",
+  "description": "Веб-сайт гостиницы Лесной дворик",
+  "private": true,
+  "scripts": {
+    "build": "bash ./vercel-build.sh",
+    "deploy": "vercel --prod"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "dependencies": {
+    "vercel": "^28.0.0"
+  }
+} 

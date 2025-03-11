@@ -23,10 +23,5 @@
         { "src": "/(.*)\\.html", "dest": "/api/public/$1.html" },
         { "src": "/(.*)\\.php", "dest": "/api/$1.php" },
         { "src": "/(.*)", "dest": "/api/vercel.php" }
-    ],
-    "build": {
-        "env": {
-            "PHP_VERSION": "8.1"
-        }
-    }
+    ]
 } 
