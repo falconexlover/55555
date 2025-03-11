@@ -1,0 +1,18 @@
+DirectoryIndex index.php index.html
+
+# Включаем перезапись URL
+RewriteEngine On
+
+# Если файл или директория существуют, используем их напрямую
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Перенаправление для HTML файлов
+RewriteRule ^([^.]+)\.html$ public/$1.html [L]
+
+# Перенаправление для PHP файлов
+RewriteRule ^([^.]+)\.php$ $1.php [L]
+
+# Перенаправление всех остальных запросов на vercel.php
+RewriteRule ^ vercel.php [L] 
