@@ -1,6 +1,6 @@
 /* Визуальное разделение секций */
 .header {
-    border-bottom: 3px solid #4CAF50;
+    border-bottom: 3px solid #217148;
     position: relative;
 }
 
@@ -9,7 +9,7 @@
     position: absolute;
     right: 10px;
     bottom: 5px;
-    background-color: #4CAF50;
+    background-color: #217148;
     color: white;
     padding: 2px 8px;
     font-size: 10px;
@@ -224,7 +224,7 @@
 }
 
 .section-divider.header-divider {
-    background-color: #4CAF50;
+    background-color: #217148;
 }
 
 .section-divider.hero-divider {

@@ -1,6 +1,6 @@
 /* Основные переменные */
 :root {
-    --primary-color: #406343; /* темно-зеленый */
+    --primary-color: #217148; /* темно-зеленый */
     --secondary-color: #8BA888; /* светло-зеленый */
     --accent-color: #D8B08C; /* песочно-коричневый */
     --light-color: #F5F5F0; /* светло-бежевый */
@@ -901,7 +901,7 @@ footer {
 
 /* Визуальное разделение секций */
 .header {
-    border-bottom: 3px solid #4CAF50;
+    border-bottom: 3px solid #217148;
     position: relative;
 }
 
@@ -910,7 +910,7 @@ footer {
     position: absolute;
     right: 10px;
     bottom: 5px;
-    background-color: #4CAF50;
+    background-color: #217148;
     color: white;
     padding: 2px 8px;
     font-size: 10px;
@@ -1109,7 +1109,7 @@ footer {
 }
 
 .section-divider.booking-divider {
-    background-color: #673AB7;
+    background-color: #217148;
 }
 
 .section-divider.testimonials-divider {
