@@ -8,8 +8,7 @@
     "builds": [
         { "src": "api/vercel.php", "use": "vercel-php@0.6.0" },
         { "src": "api/**/*.php", "use": "vercel-php@0.6.0" },
-        { "src": "api/public/**", "use": "@vercel/static" },
-        { "src": "public/**", "use": "@vercel/static" }
+        { "src": "api/public/**", "use": "@vercel/static" }
     ],
     "routes": [
         { "src": "/admin/index.php", "dest": "/api/admin/index.php" },
@@ -25,7 +24,6 @@
         { "src": "/pages/(.*)", "dest": "/api/pages/$1" },
         { "src": "/errors/(.*)", "dest": "/api/errors/$1" },
         { "src": "/docs/(.*)", "dest": "/api/docs/$1" },
-        { "src": "/data/(.*)", "dest": "/api/data/$1" },
         { "src": "/php/(.*)", "dest": "/api/php/$1" },
         { "src": "/public/(.*)", "dest": "/api/public/$1" },
         { "src": "/(.*)\\.html", "dest": "/api/public/$1.html" },
