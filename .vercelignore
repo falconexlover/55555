@@ -4,4 +4,13 @@
 README.md
 copy_dirs.ps1
 tatus
-ershehexd420DesktopSiteWeb 
+ershehexd420DesktopSiteWeb
+.env
+.env.example
+db_structure.sql
+/node_modules
+/.idea
+/.vscode
+*.log
+*.bak
+*.tmp 
