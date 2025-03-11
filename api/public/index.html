@@ -14,6 +14,14 @@
     <meta name="geo.placename" content="Жуковский">
     <meta name="format-detection" content="telephone=no">
     
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome для иконок -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
@@ -250,35 +258,34 @@
         <div class="header-container">
             <div class="logo">
                 <img src="/assets/images/logo.png" alt="Санаторий-профилакторий Лесной дворик">
+                <div class="logo-text">Лесной дворик</div>
             </div>
             <nav class="main-menu">
                 <ul>
-                    <li><a href="#booking">Забронировать</a></li>
-                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#booking"><i class="fas fa-calendar-check"></i> Забронировать</a></li>
+                    <li><a href="#about"><i class="fas fa-info-circle"></i> О нас</a></li>
                     <li class="dropdown">
-                        <a href="/api/public/pages/hotel.html">Гостиница</a>
+                        <a href="/api/public/pages/hotel.html"><i class="fas fa-bed"></i> Гостиница</a>
                         <div class="dropdown-content">
-                            <a href="/api/public/pages/hotel.html#econom">Эконом</a>
-                            <a href="/api/public/pages/hotel.html#standard">Стандарт</a>
-                            <a href="/api/public/pages/hotel.html#family">Семейные</a>
-                            <a href="/api/public/pages/hotel.html#comfort">Комфорт</a>
-                            <a href="/api/public/pages/hotel.html#lux">Люкс</a>
+                            <a href="/api/public/pages/hotel.html#econom"><i class="fas fa-star"></i> Эконом</a>
+                            <a href="/api/public/pages/hotel.html#standard"><i class="fas fa-star"></i><i class="fas fa-star"></i> Стандарт</a>
+                            <a href="/api/public/pages/hotel.html#family"><i class="fas fa-users"></i> Семейные</a>
+                            <a href="/api/public/pages/hotel.html#comfort"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> Комфорт</a>
+                            <a href="/api/public/pages/hotel.html#lux"><i class="fas fa-crown"></i> Люкс</a>
                         </div>
                     </li>
-                    <li><a href="/api/public/pages/sauna.html">Сауна</a></li>
-                    <li><a href="/api/public/pages/banquet.html">Банкетный зал</a></li>
-                    <li><a href="/api/public/pages/seminar.html">Зал для семинаров</a></li>
-                    <li><a href="/api/public/pages/gallery.html">Фотогалерея</a></li>
-                    <li><a href="#contacts">Контакты</a></li>
+                    <li><a href="/api/public/pages/sauna.html"><i class="fas fa-hot-tub"></i> Сауна</a></li>
+                    <li><a href="/api/public/pages/banquet.html"><i class="fas fa-glass-cheers"></i> Банкетный зал</a></li>
+                    <li><a href="/api/public/pages/seminar.html"><i class="fas fa-chalkboard-teacher"></i> Зал для семинаров</a></li>
+                    <li><a href="/api/public/pages/gallery.html"><i class="fas fa-images"></i> Фотогалерея</a></li>
+                    <li><a href="#contacts"><i class="fas fa-map-marker-alt"></i> Контакты</a></li>
                 </ul>
             </nav>
             <div class="booking-button">
-                <a href="#booking" class="soviet-button">Забронировать</a>
+                <a href="#booking" class="btn btn-primary"><i class="fas fa-calendar-check"></i> Забронировать</a>
             </div>
             <button class="mobile-menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
+                <i class="fas fa-bars"></i>
             </button>
         </div>
     </header>
@@ -591,52 +598,91 @@
 
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="/assets/images/logo.png" alt="Санаторий-профилакторий Лесной дворик">
-                    <div class="soviet-divider">
-                        <div class="soviet-star"></div>
+            <div class="footer-container">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <img src="/assets/images/logo.png" alt="Санаторий-профилакторий Лесной дворик">
                     </div>
-                    <p>Санаторий-профилакторий "Лесной дворик" - атмосфера советской романтики и качественный отдых</p>
+                    <p>Санаторий-профилакторий "Лесной дворик" - атмосфера советской романтики и качественный отдых в Жуковском. Мы предлагаем комфортные номера, сауну, банкетный зал и конференц-зал для ваших мероприятий.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-vk"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                <div class="footer-links">
-                    <h3 class="soviet-card-title">Навигация</h3>
-                    <ul>
-                        <li><a href="#about">О нас</a></li>
-                        <li><a href="#hotel">Гостиница</a></li>
-                        <li><a href="#sauna">Баня</a></li>
-                        <li><a href="#banquet">Актовый зал</a></li>
-                        <li><a href="#special">Спецпредложения</a></li>
-                        <li><a href="#contacts">Контакты</a></li>
+                <div class="footer-links-section">
+                    <h3 class="footer-heading">Навигация</h3>
+                    <ul class="footer-links">
+                        <li><a href="#about"><i class="fas fa-angle-right"></i> О нас</a></li>
+                        <li><a href="/api/public/pages/hotel.html"><i class="fas fa-angle-right"></i> Гостиница</a></li>
+                        <li><a href="/api/public/pages/sauna.html"><i class="fas fa-angle-right"></i> Сауна</a></li>
+                        <li><a href="/api/public/pages/banquet.html"><i class="fas fa-angle-right"></i> Банкетный зал</a></li>
+                        <li><a href="/api/public/pages/seminar.html"><i class="fas fa-angle-right"></i> Зал для семинаров</a></li>
+                        <li><a href="/api/public/pages/gallery.html"><i class="fas fa-angle-right"></i> Фотогалерея</a></li>
                     </ul>
                 </div>
-                <div class="footer-contacts">
-                    <h3 class="soviet-card-title">Свяжитесь с нами</h3>
-                    <p><i class="fas fa-phone"></i> <a href="tel:+74951234567">+7 (495) 123-45-67</a></p>
-                    <p><i class="fas fa-envelope"></i> <a href="mailto:info@lesnoy-dvorik.ru">info@lesnoy-dvorik.ru</a></p>
-                    <p><i class="fas fa-map-marker-alt"></i> г. Жуковский, недалеко от ж/д станции МЦД Отдых</p>
+                <div class="footer-links-section">
+                    <h3 class="footer-heading">Полезные ссылки</h3>
+                    <ul class="footer-links">
+                        <li><a href="#booking"><i class="fas fa-angle-right"></i> Забронировать номер</a></li>
+                        <li><a href="#" id="privacy-policy-link"><i class="fas fa-angle-right"></i> Политика конфиденциальности</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Правила проживания</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Часто задаваемые вопросы</a></li>
+                        <li><a href="#"><i class="fas fa-angle-right"></i> Специальные предложения</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3 class="footer-heading">Контактная информация</h3>
+                    <div class="footer-contact-item">
+                        <div class="footer-contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="footer-contact-text">
+                            г. Жуковский, недалеко от ж/д станции МЦД Отдых
+                        </div>
+                    </div>
+                    <div class="footer-contact-item">
+                        <div class="footer-contact-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="footer-contact-text">
+                            <a href="tel:+74951234567">+7 (495) 123-45-67</a>
+                        </div>
+                    </div>
+                    <div class="footer-contact-item">
+                        <div class="footer-contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="footer-contact-text">
+                            <a href="mailto:info@lesnoy-dvorik.ru">info@lesnoy-dvorik.ru</a>
+                        </div>
+                    </div>
+                    <div class="footer-contact-item">
+                        <div class="footer-contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="footer-contact-text">
+                            Пн-Вс: 9:00 - 21:00
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="copyright">
-                <div class="soviet-divider">
-                    <div class="soviet-star"></div>
-                    <div class="soviet-star"></div>
-                    <div class="soviet-star"></div>
-                </div>
-                <p>&copy; 2025 Санаторий-профилакторий "Лесной дворик" ОАО ЖМЗ. Все права защищены.</p>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Санаторий-профилакторий "Лесной дворик". Все права защищены.</p>
             </div>
         </div>
     </footer>
 
     <!-- Модальное окно политики конфиденциальности -->
     <div id="privacy-policy-modal" class="privacy-modal">
-        <div class="privacy-modal-content soviet-card">
+        <div class="privacy-modal-content">
             <span class="privacy-modal-close">&times;</span>
-            <h2 class="soviet-heading">Политика конфиденциальности</h2>
-            <h3 class="soviet-card-title">1. Общие положения</h3>
+            <h2>Политика конфиденциальности</h2>
+            <h3>1. Общие положения</h3>
             <p>Настоящая политика конфиденциальности описывает, как санаторий-профилакторий "Лесной дворик" собирает, использует и защищает персональные данные, которые вы предоставляете нам при использовании нашего сайта.</p>
             
-            <h3 class="soviet-card-title">2. Какую информацию мы собираем</h3>
+            <h3>2. Какую информацию мы собираем</h3>
             <p>Мы можем собирать следующую информацию:</p>
             <ul>
                 <li>Ваши Ф.И.О. и контактные данные (телефон, email)</li>
@@ -645,7 +691,7 @@
                 <li>Техническая информация о вашем устройстве и посещении сайта</li>
             </ul>
             
-            <h3 class="soviet-card-title">3. Как мы используем эту информацию</h3>
+            <h3>3. Как мы используем эту информацию</h3>
             <p>Мы используем эту информацию для:</p>
             <ul>
                 <li>Обработки вашего бронирования путевки</li>
@@ -654,16 +700,16 @@
                 <li>Отправки важной информации о вашем пребывании</li>
             </ul>
             
-            <h3 class="soviet-card-title">4. Защита информации</h3>
+            <h3>4. Защита информации</h3>
             <p>Мы принимаем все необходимые меры для защиты ваших персональных данных от несанкционированного доступа, изменения, раскрытия или уничтожения.</p>
             
-            <h3 class="soviet-card-title">5. Раскрытие информации третьим лицам</h3>
+            <h3>5. Раскрытие информации третьим лицам</h3>
             <p>Мы не продаем, не обмениваем и не передаем ваши персональные данные третьим лицам без вашего согласия, за исключением случаев, предусмотренных законодательством РФ.</p>
             
-            <h3 class="soviet-card-title">6. Согласие</h3>
+            <h3>6. Согласие</h3>
             <p>Используя наш сайт и предоставляя свои персональные данные, вы соглашаетесь с условиями настоящей политики конфиденциальности.</p>
             
-            <h3 class="soviet-card-title">7. Изменения в политике конфиденциальности</h3>
+            <h3>7. Изменения в политике конфиденциальности</h3>
             <p>Мы оставляем за собой право вносить изменения в нашу политику конфиденциальности. Любые изменения будут размещены на этой странице.</p>
             
             <p><strong>Последнее обновление: 10 марта 2025 г.</strong></p>

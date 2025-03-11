@@ -5,65 +5,47 @@
     </div>
     
     <ul class="sidebar-menu">
-        <li>
-            <a href="index.php" <?php echo ($action == 'list') ? 'class="active"' : ''; ?>>
-                <i class="fas fa-calendar-check"></i> Бронирования
+        <li class="<?php echo ($action === 'list' || $action === 'view') ? 'active' : ''; ?>">
+            <a href="index.php?action=list">
+                <i class="fa fa-calendar"></i> Бронирования
             </a>
         </li>
-        <li>
-            <a href="index.php?action=stats" <?php echo ($action == 'stats') ? 'class="active"' : ''; ?>>
-                <i class="fas fa-chart-bar"></i> Статистика
+        <li class="<?php echo ($action === 'stats') ? 'active' : ''; ?>">
+            <a href="index.php?action=stats">
+                <i class="fa fa-chart-bar"></i> Статистика
             </a>
         </li>
-        <li>
-            <a href="index.php?action=rooms" <?php echo ($action == 'rooms') ? 'class="active"' : ''; ?>>
-                <i class="fas fa-bed"></i> Номера
+        <li class="<?php echo ($action === 'rooms') ? 'active' : ''; ?>">
+            <a href="index.php?action=rooms">
+                <i class="fa fa-bed"></i> Управление номерами
             </a>
         </li>
-        <li>
-            <a href="index.php?action=content" <?php echo ($action == 'content') ? 'class="active"' : ''; ?>>
-                <i class="fas fa-edit"></i> Редактор контента
+        
+        <!-- Новые пункты меню для CMS -->
+        <li class="<?php echo ($action === 'content') ? 'active' : ''; ?>">
+            <a href="index.php?action=content">
+                <i class="fa fa-file-alt"></i> Управление контентом
             </a>
         </li>
-        <li>
-            <a href="index.php?action=promo" <?php echo ($action == 'promo') ? 'class="active"' : ''; ?>>
-                <i class="fas fa-percent"></i> Промокоды
+        <li class="<?php echo ($action === 'settings') ? 'active' : ''; ?>">
+            <a href="index.php?action=settings">
+                <i class="fa fa-cog"></i> Настройки сайта
             </a>
         </li>
-        <li>
-            <a href="index.php?action=services" <?php echo ($action == 'services') ? 'class="active"' : ''; ?>>
-                <i class="fas fa-concierge-bell"></i> Услуги
+        <li class="<?php echo ($action === 'reviews') ? 'active' : ''; ?>">
+            <a href="index.php?action=reviews">
+                <i class="fa fa-comments"></i> Отзывы
             </a>
         </li>
-        <li>
-            <a href="index.php?action=settings" <?php echo ($action == 'settings') ? 'class="active"' : ''; ?>>
-                <i class="fas fa-cog"></i> Настройки
+        <li class="<?php echo ($action === 'generate') ? 'active' : ''; ?>">
+            <a href="index.php?action=generate">
+                <i class="fa fa-sync"></i> Генерация сайта
             </a>
         </li>
+        
         <li>
-            <a href="index.php?action=users" <?php echo ($action == 'users') ? 'class="active"' : ''; ?>>
-                <i class="fas fa-users"></i> Пользователи
-            </a>
-        </li>
-        <li>
-            <a href="index.php?action=export_csv">
-                <i class="fas fa-file-export"></i> Экспорт CSV
-            </a>
-        </li>
-        <li>
-            <a href="index.php?action=logs" <?php echo ($action == 'logs') ? 'class="active"' : ''; ?>>
-                <i class="fas fa-history"></i> Журнал действий
-            </a>
-        </li>
-        <li class="sidebar-divider"></li>
-        <li>
-            <a href="../index.html" target="_blank">
-                <i class="fas fa-home"></i> Перейти на сайт
-            </a>
-        </li>
-        <li>
-            <a href="index.php?action=logout" class="logout-link">
-                <i class="fas fa-sign-out-alt"></i> Выйти
+            <a href="index.php?action=logout" class="logout">
+                <i class="fa fa-sign-out-alt"></i> Выход
             </a>
         </li>
     </ul>

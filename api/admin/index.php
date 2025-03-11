@@ -93,93 +93,271 @@ if ($action === 'export_csv') {
     }
 }
 
-// Обработка редактора контента
+// Обработка действий CMS
 if ($action === 'content') {
-    // Определяем раздел контента (по умолчанию - главная страница)
-    $content_section = isset($_GET['section']) ? $_GET['section'] : 'main';
-    
-    // Подключаем шаблон редактора контента
-    include 'templates/content_editor.php';
+    // Страница управления контентом
+    include 'templates/content_manager.php';
     exit;
-}
-
-// Обработка сохранения контента
-if ($action === 'save_content') {
+} elseif ($action === 'add_section') {
+    // Страница добавления новой секции
+    include 'templates/section_editor.php';
+    exit;
+} elseif ($action === 'edit_section') {
+    // Страница редактирования секции
+    include 'templates/section_editor.php';
+    exit;
+} elseif ($action === 'save_section') {
+    // Обработка сохранения новой секции
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $page = isset($_POST['page']) ? sanitize($_POST['page']) : '';
+        $contentData = [
+            'page' => sanitize($_POST['page']),
+            'section' => sanitize($_POST['section']),
+            'title' => sanitize($_POST['title']),
+            'content' => $_POST['content'], // Не применяем sanitize к контенту, чтобы сохранить форматирование
+            'image_path' => '',
+            'sort_order' => (int)$_POST['sort_order']
+        ];
         
-        // Проверяем, что страница указана
-        if (empty($page)) {
-            $message = 'Ошибка: не указана страница для сохранения';
-            $message_type = 'error';
-        } else {
-            // Обработка загруженных изображений
-            $uploaded_images = [];
-            
-            // Перебираем все загруженные файлы
-            foreach ($_FILES as $field_name => $file_info) {
-                if ($file_info['error'] === UPLOAD_ERR_OK && !empty($file_info['tmp_name'])) {
-                    $file_name = $file_info['name'];
-                    $file_tmp = $file_info['tmp_name'];
-                    $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
-                    
-                    // Проверяем расширение файла
-                    $allowed_extensions = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
-                    if (in_array($file_ext, $allowed_extensions)) {
-                        // Генерируем уникальное имя файла
-                        $new_file_name = uniqid() . '.' . $file_ext;
-                        $upload_path = '../assets/images/' . $new_file_name;
-                        
-                        // Перемещаем файл в папку с изображениями
-                        if (move_uploaded_file($file_tmp, $upload_path)) {
-                            $uploaded_images[$field_name] = $new_file_name;
-                        }
-                    }
-                }
-            }
-            
-            // Сохраняем данные в JSON-файл
-            $content_data = [];
-            
-            // Собираем все данные из POST-запроса
-            foreach ($_POST as $key => $value) {
-                if ($key !== 'page') {
-                    $content_data[$key] = sanitize($value);
-                }
-            }
-            
-            // Добавляем информацию о загруженных изображениях
-            foreach ($uploaded_images as $field_name => $file_name) {
-                $content_data[$field_name] = $file_name;
-            }
-            
-            // Добавляем дату обновления
-            $content_data['updated_at'] = date('Y-m-d H:i:s');
-            
-            // Создаем директорию для хранения данных, если она не существует
-            $data_dir = '../data';
-            if (!is_dir($data_dir)) {
-                mkdir($data_dir, 0755, true);
-            }
-            
-            // Сохраняем данные в JSON-файл
-            $json_file = $data_dir . '/content_' . $page . '.json';
-            $json_data = json_encode($content_data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
-            
-            if (file_put_contents($json_file, $json_data)) {
-                // Обновляем HTML-файлы на основе шаблонов и данных
-                updateHtmlFiles($page, $content_data);
-                
-                $message = 'Контент успешно сохранен';
-                $message_type = 'success';
-            } else {
-                $message = 'Ошибка при сохранении контента';
-                $message_type = 'error';
+        // Обработка загрузки изображения
+        if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+            $imagePath = uploadImage($_FILES['image']);
+            if ($imagePath) {
+                $contentData['image_path'] = $imagePath;
             }
         }
         
-        // Перенаправляем обратно на страницу редактирования
-        header('Location: index.php?action=content&section=' . $page . '&message=' . urlencode($message) . '&message_type=' . $message_type);
+        // Добавление секции в БД
+        if (addSectionContent($pdo, $contentData)) {
+            $message = 'Секция успешно добавлена';
+            $message_type = 'success';
+        } else {
+            $message = 'Ошибка при добавлении секции';
+            $message_type = 'danger';
+        }
+    }
+    
+    // Перенаправление на страницу управления контентом
+    header('Location: index.php?action=content&page=' . $contentData['page'] . '&message=' . urlencode($message) . '&message_type=' . $message_type);
+    exit;
+} elseif ($action === 'update_section') {
+    // Обработка обновления секции
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
+        $sectionId = (int)$_GET['id'];
+        
+        $contentData = [
+            'title' => sanitize($_POST['title']),
+            'content' => $_POST['content'], // Не применяем sanitize к контенту, чтобы сохранить форматирование
+            'image_path' => sanitize($_POST['current_image'] ?? '')
+        ];
+        
+        // Обработка загрузки нового изображения
+        if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+            $imagePath = uploadImage($_FILES['image']);
+            if ($imagePath) {
+                $contentData['image_path'] = $imagePath;
+            }
+        }
+        
+        // Обновление секции в БД
+        if (updateSectionContent($pdo, $sectionId, $contentData)) {
+            $message = 'Секция успешно обновлена';
+            $message_type = 'success';
+        } else {
+            $message = 'Ошибка при обновлении секции';
+            $message_type = 'danger';
+        }
+        
+        // Получаем страницу для перенаправления
+        $stmt = $pdo->prepare("SELECT page FROM content WHERE id = :id LIMIT 1");
+        $stmt->bindParam(':id', $sectionId);
+        $stmt->execute();
+        $section = $stmt->fetch();
+        $page = $section ? $section['page'] : 'main';
+        
+        // Перенаправление на страницу управления контентом
+        header('Location: index.php?action=content&page=' . $page . '&message=' . urlencode($message) . '&message_type=' . $message_type);
+        exit;
+    }
+} elseif ($action === 'delete_section') {
+    // Обработка удаления секции
+    if (isset($_GET['id'])) {
+        $sectionId = (int)$_GET['id'];
+        
+        // Получаем страницу для перенаправления
+        $stmt = $pdo->prepare("SELECT page FROM content WHERE id = :id LIMIT 1");
+        $stmt->bindParam(':id', $sectionId);
+        $stmt->execute();
+        $section = $stmt->fetch();
+        $page = $section ? $section['page'] : 'main';
+        
+        // Удаление секции из БД
+        if (deleteSectionContent($pdo, $sectionId)) {
+            $message = 'Секция успешно удалена';
+            $message_type = 'success';
+        } else {
+            $message = 'Ошибка при удалении секции';
+            $message_type = 'danger';
+        }
+        
+        // Перенаправление на страницу управления контентом
+        header('Location: index.php?action=content&page=' . $page . '&message=' . urlencode($message) . '&message_type=' . $message_type);
+        exit;
+    }
+} elseif ($action === 'move_section') {
+    // Обработка изменения порядка секций
+    if (isset($_GET['id']) && isset($_GET['direction'])) {
+        $sectionId = (int)$_GET['id'];
+        $direction = $_GET['direction'];
+        
+        // Получаем данные секции
+        $stmt = $pdo->prepare("SELECT * FROM content WHERE id = :id LIMIT 1");
+        $stmt->bindParam(':id', $sectionId);
+        $stmt->execute();
+        $section = $stmt->fetch();
+        
+        if ($section) {
+            $page = $section['page'];
+            $currentOrder = (int)$section['sort_order'];
+            $newOrder = ($direction === 'up') ? $currentOrder - 1 : $currentOrder + 1;
+            
+            // Обновляем порядок текущей секции
+            $stmt = $pdo->prepare("UPDATE content SET sort_order = :new_order WHERE id = :id");
+            $stmt->bindParam(':id', $sectionId);
+            $stmt->bindParam(':new_order', $newOrder);
+            $stmt->execute();
+            
+            // Обновляем порядок соседней секции
+            if ($direction === 'up') {
+                $stmt = $pdo->prepare("UPDATE content SET sort_order = :current_order WHERE page = :page AND sort_order = :new_order AND id != :id");
+            } else {
+                $stmt = $pdo->prepare("UPDATE content SET sort_order = :current_order WHERE page = :page AND sort_order = :new_order AND id != :id");
+            }
+            $stmt->bindParam(':page', $page);
+            $stmt->bindParam(':current_order', $currentOrder);
+            $stmt->bindParam(':new_order', $newOrder);
+            $stmt->bindParam(':id', $sectionId);
+            $stmt->execute();
+            
+            $message = 'Порядок секций обновлен';
+            $message_type = 'success';
+        } else {
+            $message = 'Секция не найдена';
+            $message_type = 'danger';
+            $page = 'main';
+        }
+        
+        // Перенаправление на страницу управления контентом
+        header('Location: index.php?action=content&page=' . $page . '&message=' . urlencode($message) . '&message_type=' . $message_type);
+        exit;
+    }
+} elseif ($action === 'settings') {
+    // Страница настроек сайта
+    include 'templates/settings.php';
+    exit;
+} elseif ($action === 'save_settings') {
+    // Обработка сохранения настроек
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['settings'])) {
+        $settings = $_POST['settings'];
+        $success = true;
+        
+        foreach ($settings as $key => $value) {
+            if (!updateSetting($pdo, $key, sanitize($value))) {
+                $success = false;
+            }
+        }
+        
+        if ($success) {
+            $message = 'Настройки успешно сохранены';
+            $message_type = 'success';
+        } else {
+            $message = 'Ошибка при сохранении настроек';
+            $message_type = 'danger';
+        }
+        
+        // Перенаправление на страницу настроек
+        header('Location: index.php?action=settings&message=' . urlencode($message) . '&message_type=' . $message_type);
+        exit;
+    }
+} elseif ($action === 'reviews') {
+    // Страница управления отзывами
+    include 'templates/reviews.php';
+    exit;
+} elseif ($action === 'generate') {
+    // Страница генерации сайта
+    include 'templates/generate.php';
+    exit;
+} elseif ($action === 'generate_site') {
+    // Обработка генерации сайта
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pages'])) {
+        $selectedPages = $_POST['pages'];
+        $generatedPages = [];
+        $failedPages = [];
+        
+        // Список шаблонов и выходных файлов
+        $templates = [
+            'main' => [
+                'template' => '../templates/main.html',
+                'output' => '../public/index.html'
+            ],
+            'hotel' => [
+                'template' => '../templates/hotel.html',
+                'output' => '../public/pages/hotel.html'
+            ],
+            'sauna' => [
+                'template' => '../templates/sauna.html',
+                'output' => '../public/pages/sauna.html'
+            ],
+            'banquet' => [
+                'template' => '../templates/banquet.html',
+                'output' => '../public/pages/banquet.html'
+            ],
+            'contacts' => [
+                'template' => '../templates/contacts.html',
+                'output' => '../public/pages/contacts.html'
+            ]
+        ];
+        
+        // Генерация выбранных страниц
+        foreach ($selectedPages as $page) {
+            if (isset($templates[$page])) {
+                if (generateHtmlPage($pdo, $page, $templates[$page]['template'], $templates[$page]['output'])) {
+                    $generatedPages[] = $page;
+                } else {
+                    $failedPages[] = $page;
+                }
+            }
+        }
+        
+        if (empty($failedPages)) {
+            $message = 'Все выбранные страницы успешно сгенерированы: ' . implode(', ', $generatedPages);
+            $message_type = 'success';
+        } else {
+            $message = 'Некоторые страницы не удалось сгенерировать: ' . implode(', ', $failedPages);
+            $message_type = 'warning';
+        }
+        
+        // Перенаправление на страницу генерации
+        header('Location: index.php?action=generate&message=' . urlencode($message) . '&message_type=' . $message_type);
+        exit;
+    }
+} elseif ($action === 'deploy_netlify') {
+    // Обработка деплоя на Netlify
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Запуск скрипта деплоя
+        $output = [];
+        $returnVar = 0;
+        exec('powershell -File ../deploy.ps1 2>&1', $output, $returnVar);
+        
+        if ($returnVar === 0) {
+            $message = 'Деплой на Netlify успешно выполнен';
+            $message_type = 'success';
+        } else {
+            $message = 'Ошибка при выполнении деплоя на Netlify: ' . implode("\n", $output);
+            $message_type = 'danger';
+        }
+        
+        // Перенаправление на страницу генерации
+        header('Location: index.php?action=generate&message=' . urlencode($message) . '&message_type=' . $message_type);
         exit;
     }
 }
