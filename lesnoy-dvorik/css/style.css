@@ -10,6 +10,7 @@
     --background-color: #FFFFFF;
     --shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
     --transition: all 0.3s ease;
+    --soviet-green: #217148; /* зеленый для советской тематики */
 }
 
 /* Сброс стилей */
@@ -138,6 +139,8 @@ header {
 
 .logo img {
     height: 60px;
+    object-fit: contain;
+    max-width: 180px;
 }
 
 .main-menu ul {
@@ -262,56 +265,64 @@ header {
 
 /* Главный баннер */
 .hero {
-    height: 100vh;
+    margin-top: 90px;
     position: relative;
-    margin-top: 80px;
-    overflow: hidden;
 }
 
 .slide-container {
-    height: 100%;
     width: 100%;
+    overflow: hidden;
+    position: relative;
 }
 
 .slide {
-    height: 100%;
     width: 100%;
-    background-size: cover;
-    background-position: center;
     position: relative;
 }
 
 .slide img {
-    position: absolute;
     width: 100%;
-    height: 100%;
+    height: 600px;
     object-fit: cover;
-    z-index: 1;
+    display: block;
 }
 
 .slide-content {
     position: absolute;
-    z-index: 2;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
     color: white;
-    max-width: 800px;
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.4);
-    border-radius: 8px;
+    text-align: center;
 }
 
 .slide-content h1 {
     font-size: 3.5rem;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    font-weight: 700;
 }
 
-.slide-content p {
-    font-size: 1.5rem;
-    margin-bottom: 30px;
+.slide-content .subtitle {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    font-weight: 500;
+    letter-spacing: 2px;
+}
+
+/* Добавляем стилизацию для советской тематики */
+.slide-content h1, .slide-content .subtitle {
+    font-family: 'Arial', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #ffffff;
+    text-shadow: 2px 2px 0 var(--soviet-green), 
+                 4px 4px 0 rgba(0,0,0,0.3);
 }
 
 /* О нас */

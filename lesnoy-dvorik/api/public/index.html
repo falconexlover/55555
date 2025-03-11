@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Гостиница "Лесной дворик" - Уютный отдых в окружении природы</title>
+    <title>Санаторий-профилакторий "Лесной дворик" - Атмосфера советской романтики в Жуковском</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/soviet-style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header class="header">
         <div class="header-container">
             <div class="logo">
-                <img src="/assets/images/logo.png" alt="Лесной дворик">
+                <img src="/assets/images/logo.png" alt="Санаторий-профилакторий Лесной дворик">
             </div>
             <nav class="main-menu">
                 <ul>
@@ -34,7 +35,7 @@
                 </ul>
             </nav>
             <div class="booking-button">
-                <a href="#booking" class="btn btn-primary">Забронировать</a>
+                <a href="#booking" class="soviet-button">Забронировать</a>
             </div>
             <button class="mobile-menu-toggle">
                 <span></span>
@@ -49,7 +50,7 @@
     </div>
 
     <section class="hero hero-section">
-        <div class="slide-container">
+        <div class="slide-container soviet-banner">
             <div class="slide">
                 <picture>
                     <source srcset="/assets/images/hotel-main.webp" type="image/webp" media="(min-width: 1200px)">
@@ -58,12 +59,16 @@
                     <source srcset="/assets/images/hotel-main.jpg" type="image/jpeg" media="(min-width: 1200px)">
                     <source srcset="/assets/images/hotel-main-medium.jpg" type="image/jpeg" media="(min-width: 768px)">
                     <source srcset="/assets/images/hotel-main-small.jpg" type="image/jpeg" media="(max-width: 767px)">
-                    <img src="/assets/images/hotel-main.jpg" alt="Отель Лесной дворик" loading="eager">
+                    <img src="/assets/images/hotel-main.jpg" alt="Санаторий-профилакторий Лесной дворик" loading="eager">
                 </picture>
-                <div class="slide-content">
-                    <h1>Добро пожаловать в "Лесной дворик"</h1>
-                    <p>Идеальное место для отдыха в гармонии с природой</p>
-                    <a href="#booking" class="btn btn-primary">Забронировать</a>
+                <div class="slide-content soviet-banner-text">
+                    <div class="soviet-divider">
+                        <div class="soviet-star"></div>
+                        <h1 class="soviet-banner-title">"ЛЕСНОЙ ДВОРИК"</h1>
+                        <div class="soviet-star"></div>
+                    </div>
+                    <p class="soviet-banner-subtitle">АТМОСФЕРА СОВЕТСКОЙ РОМАНТИКИ</p>
+                    <a href="#booking" class="soviet-button">Забронировать</a>
                 </div>
             </div>
         </div>
@@ -75,19 +80,26 @@
 
     <section id="about" class="about about-section">
         <div class="container">
-            <h2>О нас</h2>
+            <h2 class="soviet-heading">О нас</h2>
             <div class="about-content">
                 <div class="about-image">
                     <picture>
                         <source srcset="/assets/images/about.webp" type="image/webp">
                         <source srcset="/assets/images/about.jpg" type="image/jpeg">
-                        <img src="/assets/images/about.jpg" alt="О нашей гостинице" loading="lazy">
+                        <img src="/assets/images/about.jpg" alt="О нашем санатории-профилактории" loading="lazy" class="soviet-card">
                     </picture>
                 </div>
                 <div class="about-text">
-                    <p>Гостиница "Лесной дворик" - это уютное место, расположенное в живописном уголке природы, где вы сможете насладиться комфортным отдыхом вдали от городской суеты.</p>
-                    <p>Мы придерживаемся экологичного подхода во всем: наши номера оформлены с использованием натуральных материалов, а в ресторане вы можете насладиться блюдами, приготовленными из локальных продуктов.</p>
-                    <p>Просторная территория, чистый воздух и близость к природе делают "Лесной дворик" идеальным местом для семейного отдыха, романтического уик-энда или корпоративного мероприятия.</p>
+                    <p>Санаторий-профилакторий "Лесной дворик" - это уникальное место с богатой историей, где сохранена атмосфера советской эпохи и предоставляется качественный отдых и оздоровление.</p>
+                    <p>Санаторий-профилакторий расположен в красивейшей лесопарковой зоне, сохраненной с начала века. Гостиница, конференц-зал, сауна в одном комплексе в городе Жуковский. «Лесной дворик» расположен недалеко от ж/д станции МЦД Отдых, в шаговой доступности от городской инфраструктуры и общественного транспорта.</p>
+                    <p>Здание построено в 1979 году, в стиле советского постмодернизма. Использовалось как санаторий-профилакторий Жуковского машиностроительного завода. С 1991 года лечебные и оздоровительные процедуры больше не проводятся, зато комплекс прекрасно справляется с ролью отеля.</p>
+                    <p>Атмосфера советской романтики - это не просто слова. Мозаика, лепнина, внешний облик - всё это тщательно сохраняется при ремонте и реконструкции.</p>
+                    <p>«Лесной дворик» - не только гостиница в Жуковском. Это еще и оборудованный конференц-зал, и сауна с купелью и двумя парилками, и собственная кухня с уникальными блюдами по заводским рецептам.</p>
+                    <p>Цены на номера - по нижней границе рынка. Дружелюбный персонал постарается сделать ваше пребывание в гостинице беспроблемным и приятным.</p>
+                    <div class="soviet-divider">
+                        <div class="soviet-star"></div>
+                    </div>
+                    <a href="#booking" class="soviet-button">Забронировать отдых</a>
                 </div>
             </div>
         </div>
@@ -99,31 +111,37 @@
 
     <section id="services" class="services services-section">
         <div class="container">
-            <h2>Наши услуги</h2>
+            <h2 class="soviet-heading">Наши услуги</h2>
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card soviet-card">
                     <i class="fas fa-bed"></i>
-                    <h3>Комфортное проживание</h3>
-                    <p>Уютные номера различных категорий для любых потребностей</p>
-                    <a href="#hotel" class="btn btn-secondary">Подробнее</a>
+                    <h3 class="soviet-card-title">Комфортное проживание</h3>
+                    <p>Уютные номера в стиле советской эпохи с современными удобствами</p>
+                    <a href="#hotel" class="soviet-button">Подробнее</a>
                 </div>
-                <div class="service-card">
+                <div class="service-card soviet-card">
                     <i class="fas fa-utensils"></i>
-                    <h3>Ресторан</h3>
-                    <p>Ресторан с блюдами русской и европейской кухни</p>
-                    <a href="#restaurant" class="btn btn-secondary">Подробнее</a>
+                    <h3 class="soviet-card-title">Столовая</h3>
+                    <p>Традиционная советская кухня с уникальными блюдами по заводским рецептам</p>
+                    <a href="#restaurant" class="soviet-button">Подробнее</a>
                 </div>
-                <div class="service-card">
+                <div class="service-card soviet-card">
                     <i class="fas fa-hot-tub"></i>
-                    <h3>Сауна</h3>
-                    <p>Русская баня и финская сауна с зоной отдыха</p>
-                    <a href="#sauna" class="btn btn-secondary">Подробнее</a>
+                    <h3 class="soviet-card-title">Баня</h3>
+                    <p>Традиционная русская баня с купелью и двумя парилками</p>
+                    <a href="#sauna" class="soviet-button">Подробнее</a>
                 </div>
-                <div class="service-card">
+                <div class="service-card soviet-card">
                     <i class="fas fa-glass-cheers"></i>
-                    <h3>Банкетный зал</h3>
-                    <p>Организация мероприятий любого формата</p>
-                    <a href="#banquet" class="btn btn-secondary">Подробнее</a>
+                    <h3 class="soviet-card-title">Актовый зал</h3>
+                    <p>Организация культурно-массовых мероприятий и вечеров отдыха</p>
+                    <a href="#banquet" class="soviet-button">Подробнее</a>
+                </div>
+                <div class="service-card soviet-card">
+                    <i class="fas fa-briefcase"></i>
+                    <h3 class="soviet-card-title">Конференц-зал</h3>
+                    <p>Оборудованный конференц-зал для деловых мероприятий и встреч</p>
+                    <a href="#conference" class="soviet-button">Подробнее</a>
                 </div>
             </div>
         </div>
@@ -135,38 +153,38 @@
 
     <section id="special" class="special-offers services-section">
         <div class="container">
-            <h2>Спецпредложения</h2>
+            <h2 class="soviet-heading">Спецпредложения</h2>
             <div class="offers-grid">
-                <div class="offer-card">
+                <div class="offer-card soviet-card">
                     <div class="offer-image">
                         <picture>
                             <source srcset="/assets/images/romantic.webp" type="image/webp">
                             <source srcset="/assets/images/romantic.jpg" type="image/jpeg">
-                            <img src="/assets/images/romantic.jpg" alt="Романтический уик-энд" loading="lazy">
+                            <img src="/assets/images/romantic.jpg" alt="Романтический отдых" loading="lazy">
                         </picture>
-                        <div class="offer-badge">Только до 31 мая</div>
+                        <div class="offer-badge">Путевка выходного дня</div>
                     </div>
                     <div class="offer-content">
-                        <h3>Романтический уик-энд</h3>
-                        <p>Номер категории Комфорт + романтический ужин + посещение сауны</p>
+                        <h3 class="soviet-card-title">Романтический отдых</h3>
+                        <p>Номер категории Комфорт + ужин в столовой + посещение бани</p>
                         <p class="offer-price">от 5900 ₽</p>
-                        <a href="#booking" class="btn btn-primary">Забронировать</a>
+                        <a href="#booking" class="soviet-button">Забронировать</a>
                     </div>
                 </div>
-                <div class="offer-card">
+                <div class="offer-card soviet-card">
                     <div class="offer-image">
                         <picture>
                             <source srcset="/assets/images/family.webp" type="image/webp">
                             <source srcset="/assets/images/family.jpg" type="image/jpeg">
                             <img src="/assets/images/family.jpg" alt="Семейный отдых" loading="lazy">
                         </picture>
-                        <div class="offer-badge">Новинка</div>
+                        <div class="offer-badge">Профсоюзная путевка</div>
                     </div>
                     <div class="offer-content">
-                        <h3>Семейный отдых</h3>
-                        <p>Семейный номер + завтраки + детская программа</p>
+                        <h3 class="soviet-card-title">Семейный отдых</h3>
+                        <p>Семейный номер + трехразовое питание + культурная программа</p>
                         <p class="offer-price">от 6500 ₽</p>
-                        <a href="#booking" class="btn btn-primary">Забронировать</a>
+                        <a href="#booking" class="soviet-button">Забронировать</a>
                     </div>
                 </div>
             </div>
@@ -179,8 +197,13 @@
 
     <section id="booking" class="booking booking-section">
         <div class="container">
-            <h2>Забронировать номер</h2>
-            <form class="booking-form" id="hotel-booking-form">
+            <h2 class="soviet-heading">Забронировать путевку</h2>
+            <div class="soviet-divider">
+                <div class="soviet-star"></div>
+                <div class="soviet-star"></div>
+                <div class="soviet-star"></div>
+            </div>
+            <form class="booking-form soviet-card" id="hotel-booking-form">
                 <div class="form-row">
                     <div class="form-group">
                         <label for="arrival-date">Дата заезда</label>
@@ -193,12 +216,12 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="guests">Количество гостей</label>
+                        <label for="guests">Количество отдыхающих</label>
                         <select id="guests" name="guests" required>
-                            <option value="1">1 гость</option>
-                            <option value="2" selected>2 гостя</option>
-                            <option value="3">3 гостя</option>
-                            <option value="4">4 гостя</option>
+                            <option value="1">1 человек</option>
+                            <option value="2" selected>2 человека</option>
+                            <option value="3">3 человека</option>
+                            <option value="4">4 человека</option>
                             <option value="5+">5 и более</option>
                         </select>
                     </div>
@@ -216,14 +239,15 @@
                 <div class="form-group">
                     <label>Дополнительные услуги</label>
                     <div class="checkbox-group">
-                        <label><input type="checkbox" name="breakfast" value="1"> Завтрак</label>
-                        <label><input type="checkbox" name="dinner" value="1"> Ужин</label>
-                        <label><input type="checkbox" name="sauna" value="1"> Сауна</label>
+                        <label><input type="checkbox" name="breakfast" value="1"> Трехразовое питание</label>
+                        <label><input type="checkbox" name="dinner" value="1"> Лечебные процедуры</label>
+                        <label><input type="checkbox" name="sauna" value="1"> Посещение бани</label>
+                        <label><input type="checkbox" name="cultural" value="1"> Культурная программа</label>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="name">Ваше имя</label>
+                        <label for="name">Ф.И.О.</label>
                         <input type="text" id="name" name="name" required>
                     </div>
                     <div class="form-group">
@@ -242,15 +266,16 @@
                             <option value="card">Банковская карта</option>
                             <option value="cash" selected>Наличными при заселении</option>
                             <option value="bank-transfer">Банковский перевод</option>
+                            <option value="voucher">Профсоюзная путевка</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="promo-code">Промокод (если есть)</label>
+                        <label for="promo-code">Номер профсоюзного билета</label>
                         <input type="text" id="promo-code" name="promo_code">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="comments">Комментарии</label>
+                    <label for="comments">Пожелания</label>
                     <textarea id="comments" name="comments"></textarea>
                 </div>
                 <div class="form-group privacy-policy">
@@ -259,8 +284,8 @@
                         Я согласен с <a href="#" class="open-privacy-policy">политикой конфиденциальности</a> и даю согласие на обработку персональных данных
                     </label>
                 </div>
-                <div class="booking-summary" id="booking-summary" style="display: none;">
-                    <h3>Информация о бронировании</h3>
+                <div class="booking-summary soviet-card" id="booking-summary" style="display: none;">
+                    <h3 class="soviet-card-title">Информация о бронировании</h3>
                     <div class="summary-content">
                         <p>Загрузка данных...</p>
                     </div>
@@ -269,8 +294,8 @@
                     </div>
                 </div>
                 <div class="form-buttons">
-                    <button type="button" class="btn btn-secondary" id="calculate-price">Рассчитать стоимость</button>
-                    <button type="submit" class="btn btn-primary">Отправить заявку</button>
+                    <button type="button" class="soviet-button" id="calculate-price">Рассчитать стоимость</button>
+                    <button type="submit" class="soviet-button">Оформить путевку</button>
                 </div>
             </form>
         </div>
@@ -282,27 +307,30 @@
 
     <section id="contacts" class="contacts contacts-section">
         <div class="container">
-            <h2>Контакты</h2>
+            <h2 class="soviet-heading">Контакты</h2>
+            <div class="soviet-divider">
+                <div class="soviet-star"></div>
+            </div>
             <div class="contacts-content">
                 <div class="contact-info">
-                    <div class="contact-item">
+                    <div class="contact-item soviet-card">
                         <i class="fas fa-map-marker-alt"></i>
                         <div>
-                            <h3>Адрес</h3>
-                            <p>г. Москва, ул. Лесная, д. 10</p>
+                            <h3 class="soviet-card-title">Адрес</h3>
+                            <p>г. Жуковский, недалеко от ж/д станции МЦД Отдых</p>
                         </div>
                     </div>
-                    <div class="contact-item">
+                    <div class="contact-item soviet-card">
                         <i class="fas fa-phone"></i>
                         <div>
-                            <h3>Телефон</h3>
+                            <h3 class="soviet-card-title">Телефон</h3>
                             <p><a href="tel:+74951234567">+7 (495) 123-45-67</a></p>
                         </div>
                     </div>
-                    <div class="contact-item">
+                    <div class="contact-item soviet-card">
                         <i class="fas fa-envelope"></i>
                         <div>
-                            <h3>Email</h3>
+                            <h3 class="soviet-card-title">Email</h3>
                             <p><a href="mailto:info@lesnoy-dvorik.ru">info@lesnoy-dvorik.ru</a></p>
                         </div>
                     </div>
@@ -312,7 +340,7 @@
                         <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
-                <div class="map-container">
+                <div class="map-container soviet-card">
                     <div id="map"></div>
                 </div>
             </div>
@@ -327,69 +355,77 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <img src="/assets/images/logo.png" alt="Лесной дворик">
-                    <p>Гостиница "Лесной дворик" - уютное место для отдыха в гармонии с природой</p>
+                    <img src="/assets/images/logo.png" alt="Санаторий-профилакторий Лесной дворик">
+                    <div class="soviet-divider">
+                        <div class="soviet-star"></div>
+                    </div>
+                    <p>Санаторий-профилакторий "Лесной дворик" - атмосфера советской романтики и качественный отдых</p>
                 </div>
                 <div class="footer-links">
-                    <h3>Навигация</h3>
+                    <h3 class="soviet-card-title">Навигация</h3>
                     <ul>
                         <li><a href="#about">О нас</a></li>
                         <li><a href="#hotel">Гостиница</a></li>
-                        <li><a href="#sauna">Сауна</a></li>
-                        <li><a href="#banquet">Банкетный зал</a></li>
+                        <li><a href="#sauna">Баня</a></li>
+                        <li><a href="#banquet">Актовый зал</a></li>
                         <li><a href="#special">Спецпредложения</a></li>
                         <li><a href="#contacts">Контакты</a></li>
                     </ul>
                 </div>
                 <div class="footer-contacts">
-                    <h3>Свяжитесь с нами</h3>
+                    <h3 class="soviet-card-title">Свяжитесь с нами</h3>
                     <p><i class="fas fa-phone"></i> <a href="tel:+74951234567">+7 (495) 123-45-67</a></p>
                     <p><i class="fas fa-envelope"></i> <a href="mailto:info@lesnoy-dvorik.ru">info@lesnoy-dvorik.ru</a></p>
-                    <p><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Лесная, д. 10</p>
+                    <p><i class="fas fa-map-marker-alt"></i> г. Жуковский, недалеко от ж/д станции МЦД Отдых</p>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 Гостиница "Лесной дворик". Все права защищены.</p>
+                <div class="soviet-divider">
+                    <div class="soviet-star"></div>
+                    <div class="soviet-star"></div>
+                    <div class="soviet-star"></div>
+                </div>
+                <p>&copy; 2025 Санаторий-профилакторий "Лесной дворик" ОАО ЖМЗ. Все права защищены.</p>
             </div>
         </div>
     </footer>
 
     <!-- Модальное окно политики конфиденциальности -->
     <div id="privacy-policy-modal" class="privacy-modal">
-        <div class="privacy-modal-content">
+        <div class="privacy-modal-content soviet-card">
             <span class="privacy-modal-close">&times;</span>
-            <h2>Политика конфиденциальности</h2>
-            <h3>1. Общие положения</h3>
-            <p>Настоящая политика конфиденциальности описывает, как гостиница "Лесной дворик" собирает, использует и защищает персональные данные, которые вы предоставляете нам при использовании нашего сайта.</p>
+            <h2 class="soviet-heading">Политика конфиденциальности</h2>
+            <h3 class="soviet-card-title">1. Общие положения</h3>
+            <p>Настоящая политика конфиденциальности описывает, как санаторий-профилакторий "Лесной дворик" собирает, использует и защищает персональные данные, которые вы предоставляете нам при использовании нашего сайта.</p>
             
-            <h3>2. Какую информацию мы собираем</h3>
+            <h3 class="soviet-card-title">2. Какую информацию мы собираем</h3>
             <p>Мы можем собирать следующую информацию:</p>
             <ul>
-                <li>Ваше имя и контактные данные (телефон, email)</li>
-                <li>Информация о бронировании (даты, тип номера, дополнительные услуги)</li>
+                <li>Ваши Ф.И.О. и контактные данные (телефон, email)</li>
+                <li>Информация о бронировании путевки (даты, тип номера, дополнительные услуги)</li>
                 <li>Информация о предпочтениях и пожеланиях</li>
                 <li>Техническая информация о вашем устройстве и посещении сайта</li>
             </ul>
             
-            <h3>3. Как мы используем эту информацию</h3>
+            <h3 class="soviet-card-title">3. Как мы используем эту информацию</h3>
             <p>Мы используем эту информацию для:</p>
             <ul>
-                <li>Обработки вашего бронирования</li>
+                <li>Обработки вашего бронирования путевки</li>
                 <li>Связи с вами по вопросам бронирования</li>
                 <li>Улучшения работы нашего сайта и услуг</li>
                 <li>Отправки важной информации о вашем пребывании</li>
             </ul>
             
-            <h3>4. Защита информации</h3>
+            <h3 class="soviet-card-title">4. Защита информации</h3>
             <p>Мы принимаем все необходимые меры для защиты ваших персональных данных от несанкционированного доступа, изменения, раскрытия или уничтожения.</p>
             
-            <h3>5. Раскрытие информации третьим лицам</h3>
+            <h3 class="soviet-card-title">5. Раскрытие информации третьим лицам</h3>
             <p>Мы не продаем, не обмениваем и не передаем ваши персональные данные третьим лицам без вашего согласия, за исключением случаев, предусмотренных законодательством РФ.</p>
             
-            <h3>6. Согласие</h3>
+            <h3 class="soviet-card-title">6. Согласие</h3>
             <p>Используя наш сайт и предоставляя свои персональные данные, вы соглашаетесь с условиями настоящей политики конфиденциальности.</p>
             
-            <h3>7. Изменения в политике конфиденциальности</h3>
+            <h3 class="soviet-card-title">7. Изменения в политике конфиденциальности</h3>
             <p>Мы оставляем за собой право вносить изменения в нашу политику конфиденциальности. Любые изменения будут размещены на этой странице.</p>
             
             <p><strong>Последнее обновление: 10 марта 2025 г.</strong></p>
@@ -397,16 +433,19 @@
     </div>
 
     <!-- Панель администратора (скрыта по умолчанию) -->
-    <div class="admin-panel" id="admin-panel">
+    <div class="admin-panel soviet-card" id="admin-panel">
         <div class="container">
-            <h2>Панель администратора</h2>
-            <h3>Список бронирований</h3>
+            <h2 class="soviet-heading">Панель администратора</h2>
+            <div class="soviet-divider">
+                <div class="soviet-star"></div>
+            </div>
+            <h3 class="soviet-card-title">Список путевок</h3>
             
             <div id="bookings-container">
-                <p class="empty-list">Нет сохраненных бронирований</p>
+                <p class="empty-list">Нет оформленных путевок</p>
             </div>
             
-            <button id="clear-all-bookings" class="btn btn-secondary">Очистить все бронирования</button>
+            <button id="clear-all-bookings" class="soviet-button">Очистить все путевки</button>
         </div>
     </div>
 
