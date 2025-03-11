@@ -1,61 +1,93 @@
 ﻿<?php
-// Включаем отображение ошибок для отладки
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// Определяем базовый путь
+$base_path = __DIR__;
 
-// Логирование запроса
-error_log("Запрос к index.php: " . $_SERVER['REQUEST_URI']);
+// Получаем запрошенный URI
+$request_uri = $_SERVER['REQUEST_URI'];
 
-// Путь к файлу index.html
-$index_file = __DIR__ . '/public/index.html';
-
-// Проверяем, существует ли файл
-if (file_exists($index_file)) {
-    // Выводим содержимое файла
-    header('Content-Type: text/html');
-    readfile($index_file);
+// Если запрос идет к index.html или корню, просто включаем index.html из директории public
+if ($request_uri == '/' || $request_uri == '/index.html') {
+    include $base_path . '/public/index.html';
     exit;
-} else {
-    // Если файл не найден, пробуем другой вариант
-    $alternate_index = __DIR__ . '/index.html';
-    
-    if (file_exists($alternate_index)) {
-        header('Content-Type: text/html');
-        readfile($alternate_index);
-        exit;
-    } else {
-        // Если и этот файл не найден, выводим запасную страницу
-        header('Content-Type: text/html');
-        echo '<!DOCTYPE html>
-        <html lang="ru">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Гостиница "Лесной дворик"</title>
-            <style>
-                body { font-family: Arial, sans-serif; margin: 0; padding: 20px; line-height: 1.6; }
-                .container { max-width: 800px; margin: 0 auto; padding: 20px; background: #f9f9f9; border-radius: 5px; }
-                h1 { color: #2c3e50; }
-                .message { background: #e8f8f5; padding: 15px; border-left: 5px solid #27ae60; margin: 20px 0; }
-                .btn { display: inline-block; background: #3498db; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; }
-            </style>
-        </head>
-        <body>
-            <div class="container">
-                <h1>Гостиница "Лесной дворик"</h1>
-                <div class="message">
-                    <h2>Добро пожаловать!</h2>
-                    <p>Наша гостиница предлагает комфортабельные номера и отличное обслуживание.</p>
-                </div>
-                <p>Если вы видите эту страницу, значит основной шаблон не был загружен.</p>
-                <p><a href="/api/public/index.html" class="btn">Перейти на основную страницу</a></p>
-            </div>
-        </body>
-        </html>';
-    }
 }
 
-// Логирование завершения запроса
-error_log("Запрос к index.php завершен");
-?>
+// Проверяем, существует ли запрошенный файл в директории public
+$public_file_path = $base_path . '/public' . $request_uri;
+if (file_exists($public_file_path) && !is_dir($public_file_path)) {
+    // Определяем MIME-тип на основе расширения файла
+    $extension = pathinfo($public_file_path, PATHINFO_EXTENSION);
+    switch ($extension) {
+        case 'html':
+            header('Content-Type: text/html');
+            break;
+        case 'css':
+            header('Content-Type: text/css');
+            break;
+        case 'js':
+            header('Content-Type: application/javascript');
+            break;
+        case 'json':
+            header('Content-Type: application/json');
+            break;
+        case 'png':
+            header('Content-Type: image/png');
+            break;
+        case 'jpg':
+        case 'jpeg':
+            header('Content-Type: image/jpeg');
+            break;
+        case 'gif':
+            header('Content-Type: image/gif');
+            break;
+        case 'svg':
+            header('Content-Type: image/svg+xml');
+            break;
+        // Добавьте другие типы файлов по необходимости
+    }
+    
+    // Включаем файл напрямую
+    include $public_file_path;
+    exit;
+}
+
+// Проверяем, существует ли запрошенный файл в корневой директории api
+$file_path = $base_path . $request_uri;
+if (file_exists($file_path) && !is_dir($file_path)) {
+    // Определяем MIME-тип на основе расширения файла
+    $extension = pathinfo($file_path, PATHINFO_EXTENSION);
+    switch ($extension) {
+        case 'html':
+            header('Content-Type: text/html');
+            break;
+        case 'css':
+            header('Content-Type: text/css');
+            break;
+        case 'js':
+            header('Content-Type: application/javascript');
+            break;
+        case 'json':
+            header('Content-Type: application/json');
+            break;
+        case 'png':
+            header('Content-Type: image/png');
+            break;
+        case 'jpg':
+        case 'jpeg':
+            header('Content-Type: image/jpeg');
+            break;
+        case 'gif':
+            header('Content-Type: image/gif');
+            break;
+        case 'svg':
+            header('Content-Type: image/svg+xml');
+            break;
+        // Добавьте другие типы файлов по необходимости
+    }
+    
+    // Включаем файл напрямую
+    include $file_path;
+    exit;
+}
+
+// Если файл не найден, перенаправляем на index.html
+include $base_path . '/public/index.html';
