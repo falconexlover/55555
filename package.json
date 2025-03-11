@@ -2,7 +2,7 @@
   "name": "lesnoy-dvorik-hotel",
   "version": "1.0.0",
   "description": "Гостиница 'Лесной дворик' - Веб-сайт",
-  "main": "index.js",
+  "main": "api/public/index.html",
   "scripts": {
     "start": "vercel dev",
     "build": "echo 'Build completed'",

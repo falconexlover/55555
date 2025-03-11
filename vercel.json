@@ -11,12 +11,12 @@
         { "src": "api/public/**", "use": "@vercel/static" }
     ],
     "routes": [
-        { "src": "/admin/index.php", "dest": "/api/admin/index.php" },
-        { "src": "/admin/login_form.php", "dest": "/api/admin/login_form.php" },
+        { "src": "/", "dest": "/api/public/index.html" },
+        { "src": "/index.html", "dest": "/api/public/index.html" },
         { "src": "/admin", "dest": "/api/admin/index.php" },
         { "src": "/admin/(.*)", "dest": "/api/admin/$1" },
-        { "src": "/index.html", "dest": "/api/public/index.html" },
-        { "src": "/", "dest": "/api/public/index.html" },
+        { "src": "/admin/index.php", "dest": "/api/admin/index.php" },
+        { "src": "/admin/login_form.php", "dest": "/api/admin/login_form.php" },
         { "src": "/assets/(.*)", "dest": "/api/assets/$1" },
         { "src": "/css/(.*)", "dest": "/api/css/$1" },
         { "src": "/js/(.*)", "dest": "/api/js/$1" },
@@ -28,7 +28,7 @@
         { "src": "/public/(.*)", "dest": "/api/public/$1" },
         { "src": "/(.*)\\.html", "dest": "/api/public/$1.html" },
         { "src": "/(.*)\\.php", "dest": "/api/$1.php" },
-        { "src": "/(.*)", "dest": "/api/vercel.php" }
+        { "src": "/(.*)", "dest": "/api/public/index.html" }
     ],
     "env": {
         "PHP_VERSION": "8.0",
