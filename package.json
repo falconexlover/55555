@@ -5,7 +5,7 @@
   "main": "api/public/index.html",
   "scripts": {
     "start": "netlify dev",
-    "build": "echo 'Build completed'",
+    "build": "node -e \"const fs = require('fs'); const dirs = ['api/public/assets', 'api/public/css', 'api/public/js']; dirs.forEach(dir => { if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true }); }); console.log('Build completed');\"",
     "deploy": "netlify deploy --prod",
     "lint": "echo 'No linting configured'"
   },
