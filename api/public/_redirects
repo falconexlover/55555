@@ -1,0 +1,20 @@
+# Перенаправления для файлов и директорий
+/assets/*  /assets/:splat  200
+/css/*     /css/:splat     200
+/js/*      /js/:splat      200
+
+# Обработка динамических запросов через функции Netlify
+/admin     /.netlify/functions/admin  200
+/admin/*   /.netlify/functions/admin  200
+/api/bookings     /.netlify/functions/bookings  200
+/api/bookings/*   /.netlify/functions/bookings  200
+
+# Правила для страниц сайта
+/booking    /pages/booking.html  200
+/hotel      /pages/hotel.html    200
+/sauna      /pages/sauna.html    200
+/banquet    /pages/banquet.html  200
+/special    /pages/special.html  200
+
+# Перенаправление всех остальных запросов на index.html
+/*         /index.html     200 

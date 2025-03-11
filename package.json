@@ -4,19 +4,23 @@
   "description": "Гостиница 'Лесной дворик' - Официальный сайт",
   "main": "api/public/index.html",
   "scripts": {
-    "start": "vercel dev",
+    "start": "netlify dev",
     "build": "echo 'Build completed'",
-    "deploy": "vercel --prod",
+    "deploy": "netlify deploy --prod",
     "lint": "echo 'No linting configured'"
   },
   "engines": {
     "node": ">=14.x"
   },
   "dependencies": {
-    "vercel-php": "^0.6.0"
+    "netlify-cli": "^17.10.1",
+    "@netlify/functions": "^2.0.2",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.3.0"
   },
   "devDependencies": {
-    "vercel": "^28.20.0"
+    "netlify-lambda": "^2.0.16"
   },
   "repository": {
     "type": "git",
@@ -25,8 +29,8 @@
   "keywords": [
     "hotel",
     "booking",
-    "vercel",
-    "php"
+    "netlify",
+    "jamstack"
   ],
   "author": "Лесной дворик",
   "license": "MIT"

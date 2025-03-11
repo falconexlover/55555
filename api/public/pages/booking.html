@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Бронирование номеров в гостинице 'Лесной дворик'. Удобная форма онлайн-бронирования, выбор номеров и услуг.">
+    <meta name="keywords" content="бронирование гостиницы, забронировать номер, отель, размещение, лесной дворик">
+    <meta name="author" content="Лесной дворик">
+    <meta property="og:title" content="Бронирование номеров - Гостиница 'Лесной дворик'">
+    <meta property="og:description" content="Забронируйте номер в гостинице 'Лесной дворик' онлайн. Широкий выбор номеров и удобная форма бронирования.">
+    <meta property="og:image" content="/assets/images/hotel-main.jpg">
+    <meta property="og:url" content="https://lesnoy-dvorik.netlify.app/pages/booking.html">
+    <meta property="og:type" content="website">
+    <title>Бронирование номеров - Гостиница "Лесной дворик"</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="https://lesnoy-dvorik.netlify.app/pages/booking.html">
+    <style>
+      /* Дополнительные стили для страницы бронирования */
+      .booking-section {
+        padding: 40px 0;
+        background-color: #f9f9f9;
+      }
+      
+      .booking-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      
+      .booking-header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      
+      .booking-header h1 {
+        color: #4CAF50;
+        margin-bottom: 10px;
+      }
+      
+      .booking-header p {
+        color: #666;
+        font-size: 18px;
+      }
+      
+      .booking-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+      }
+      
+      .check-availability {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      }
+      
+      .check-availability h2 {
+        margin-bottom: 20px;
+        color: #333;
+      }
+      
+      .date-inputs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+      
+      .form-group {
+        margin-bottom: 20px;
+      }
+      
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+      
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+      
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        border-color: #4CAF50;
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+      }
+      
+      .error-message {
+        color: #f44336;
+        font-size: 14px;
+        margin-top: 5px;
+        display: none;
+      }
+      
+      .btn {
+        display: inline-block;
+        padding: 12px 24px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 500;
+        text-decoration: none;
+        transition: background-color 0.3s;
+      }
+      
+      .btn:hover {
+        background-color: #388E3C;
+      }
+      
+      .btn-block {
+        display: block;
+        width: 100%;
+      }
+      
+      .btn-outline {
+        background-color: transparent;
+        border: 2px solid #4CAF50;
+        color: #4CAF50;
+      }
+      
+      .btn-outline:hover {
+        background-color: rgba(76, 175, 80, 0.1);
+      }
+      
+      #available-rooms {
+        margin-top: 30px;
+        display: none;
+      }
+      
+      .room-card {
+        background-color: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        margin-bottom: 20px;
+      }
+      
+      .room-card-header {
+        background-color: #4CAF50;
+        color: white;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .room-card-header h4 {
+        margin: 0;
+        font-size: 18px;
+      }
+      
+      .room-price {
+        font-weight: bold;
+      }
+      
+      .room-card-content {
+        padding: 20px;
+      }
+      
+      .room-details {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+      }
+      
+      .room-capacity, .room-count {
+        display: flex;
+        align-items: center;
+      }
+      
+      .room-capacity i, .room-count i {
+        margin-right: 10px;
+        color: #4CAF50;
+      }
+      
+      .room-description {
+        margin-bottom: 15px;
+        line-height: 1.6;
+      }
+      
+      .room-amenities {
+        margin-bottom: 20px;
+        font-size: 14px;
+        color: #666;
+      }
+      
+      .booking-form {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      }
+      
+      .booking-form h2 {
+        margin-bottom: 20px;
+        color: #333;
+      }
+      
+      .booking-summary {
+        background-color: #f0f6f0;
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 20px;
+        display: none;
+      }
+      
+      .booking-summary h3 {
+        margin-bottom: 15px;
+        color: #4CAF50;
+      }
+      
+      .booking-detail {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px dashed #ddd;
+      }
+      
+      .booking-detail.total {
+        font-weight: bold;
+        border-bottom: none;
+        margin-top: 10px;
+        padding-top: 15px;
+        border-top: 2px solid #ddd;
+      }
+      
+      .detail-label {
+        color: #666;
+      }
+      
+      .detail-value {
+        font-weight: 500;
+      }
+      
+      #success-message, #error-message {
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 10px;
+        text-align: center;
+        display: none;
+      }
+      
+      #success-message {
+        background-color: #e8f5e9;
+        color: #2e7d32;
+      }
+      
+      #error-message {
+        background-color: #ffebee;
+        color: #c62828;
+      }
+      
+      #booking-details {
+        padding: 20px;
+        background-color: #f5f5f5;
+        border-radius: 10px;
+        margin-top: 20px;
+        display: none;
+      }
+      
+      .loading-indicator {
+        display: none;
+        margin-left: 10px;
+        width: 20px;
+        height: 20px;
+        border: 2px solid rgba(255,255,255,0.3);
+        border-radius: 50%;
+        border-top-color: #fff;
+        animation: spin 1s ease-in-out infinite;
+      }
+      
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      
+      .no-rooms {
+        text-align: center;
+        padding: 30px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        color: #666;
+      }
+      
+      @media (max-width: 768px) {
+        .booking-grid {
+          grid-template-columns: 1fr;
+        }
+        
+        .date-inputs {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="/">
+                    <img src="/assets/images/logo.png" alt="Лесной дворик" width="150" height="50">
+                </a>
+            </div>
+            <nav class="main-menu">
+                <ul>
+                    <li><a href="/#about">О нас</a></li>
+                    <li class="dropdown">
+                        <a href="/pages/hotel.html">Гостиница</a>
+                        <div class="dropdown-content">
+                            <a href="/pages/hotel.html#econom">Эконом</a>
+                            <a href="/pages/hotel.html#standard">Стандарт</a>
+                            <a href="/pages/hotel.html#family">Семейные</a>
+                            <a href="/pages/hotel.html#comfort">Комфорт</a>
+                            <a href="/pages/hotel.html#lux">Люкс</a>
+                        </div>
+                    </li>
+                    <li><a href="/pages/sauna.html">Сауна</a></li>
+                    <li><a href="/pages/banquet.html">Банкетный зал</a></li>
+                    <li><a href="/pages/special.html">Спецпредложения</a></li>
+                    <li><a href="/#contacts">Контакты</a></li>
+                </ul>
+            </nav>
+            <div class="booking-button">
+                <a href="/pages/booking.html" class="btn btn-primary active">Забронировать</a>
+            </div>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-banner" style="background-image: url('/assets/images/booking-banner.jpg');">
+        <div class="page-banner-content">
+            <h1>Бронирование номеров</h1>
+            <p>Выберите даты и забронируйте комфортное размещение</p>
+        </div>
+    </div>
+
+    <section class="booking-section">
+        <div class="booking-container">
+            <div class="booking-header">
+                <h1>Забронировать номер</h1>
+                <p>Выберите даты и проверьте наличие свободных номеров</p>
+            </div>
+            
+            <div class="booking-grid">
+                <div class="check-availability">
+                    <h2>Проверка доступности</h2>
+                    <div class="date-inputs">
+                        <div class="form-group">
+                            <label for="arrival-date">Дата заезда:</label>
+                            <input type="date" id="arrival-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="departure-date">Дата выезда:</label>
+                            <input type="date" id="departure-date" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="guests">Количество гостей:</label>
+                        <select id="guests" required>
+                            <option value="1">1 человек</option>
+                            <option value="2" selected>2 человека</option>
+                            <option value="3">3 человека</option>
+                            <option value="4">4 человека</option>
+                            <option value="5">5 человек</option>
+                            <option value="6">6 человек</option>
+                        </select>
+                    </div>
+                    <div id="date-error" class="error-message"></div>
+                    <button id="check-availability" class="btn btn-block">
+                        Проверить доступность
+                        <span id="loading-indicator" class="loading-indicator"></span>
+                    </button>
+                    
+                    <div id="available-rooms"></div>
+                </div>
+                
+                <div class="booking-form-container">
+                    <form id="booking-form" class="booking-form">
+                        <h2>Заполните данные для бронирования</h2>
+                        
+                        <div class="form-group">
+                            <label for="room-type">Тип номера:</label>
+                            <select id="room-type" required>
+                                <option value="">Выберите тип номера</option>
+                                <option value="Эконом" data-price="2500">Эконом</option>
+                                <option value="Стандарт" data-price="3500">Стандарт</option>
+                                <option value="Семейный" data-price="5000">Семейный</option>
+                                <option value="Комфорт" data-price="4500">Комфорт</option>
+                                <option value="Люкс" data-price="7000">Люкс</option>
+                            </select>
+                            <div id="room-type-error" class="error-message"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Стоимость за ночь: <span id="price-display">0 ₽</span></label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="name">Ваше имя:</label>
+                            <input type="text" id="name" required>
+                            <div id="name-error" class="error-message"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Номер телефона:</label>
+                            <input type="tel" id="phone" required placeholder="+7 (___) ___-____">
+                            <div id="phone-error" class="error-message"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email (необязательно):</label>
+                            <input type="email" id="email" placeholder="example@domain.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="payment-method">Способ оплаты:</label>
+                            <select id="payment-method">
+                                <option value="Наличными при заезде">Наличными при заезде</option>
+                                <option value="Банковской картой при заезде">Банковской картой при заезде</option>
+                                <option value="Предоплата">Предоплата</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="promo-code">Промокод (если есть):</label>
+                            <input type="text" id="promo-code">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="comments">Комментарии к бронированию:</label>
+                            <textarea id="comments" rows="4"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Итоговая стоимость: <strong><span id="total-price">0 ₽</span></strong></label>
+                        </div>
+                        
+                        <button type="submit" id="booking-submit" class="btn btn-block">
+                            Забронировать
+                            <span id="submit-loading" class="loading-indicator"></span>
+                        </button>
+                        
+                        <div id="guests-error" class="error-message"></div>
+                    </form>
+                    
+                    <div id="booking-summary" class="booking-summary"></div>
+                    
+                    <div id="success-message"></div>
+                    <div id="booking-details"></div>
+                    <div id="error-message"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-info">
+                <div class="footer-logo">
+                    <img src="/assets/images/logo-white.png" alt="Лесной дворик" width="150" height="50">
+                </div>
+                <div class="footer-contacts">
+                    <h3>Контакты</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Лесная, д. 15</p>
+                    <p><i class="fas fa-phone"></i> +7 (495) 123-45-67</p>
+                    <p><i class="fas fa-envelope"></i> info@lesnoy-dvorik.ru</p>
+                </div>
+                <div class="footer-socials">
+                    <h3>Мы в соцсетях</h3>
+                    <div class="social-icons">
+                        <a href="#" target="_blank"><i class="fab fa-vk"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-menu">
+                <div class="footer-menu-column">
+                    <h3>Гостиница</h3>
+                    <ul>
+                        <li><a href="/pages/hotel.html#econom">Номера Эконом</a></li>
+                        <li><a href="/pages/hotel.html#standard">Номера Стандарт</a></li>
+                        <li><a href="/pages/hotel.html#family">Семейные номера</a></li>
+                        <li><a href="/pages/hotel.html#comfort">Номера Комфорт</a></li>
+                        <li><a href="/pages/hotel.html#lux">Номера Люкс</a></li>
+                    </ul>
+                </div>
+                <div class="footer-menu-column">
+                    <h3>Услуги</h3>
+                    <ul>
+                        <li><a href="/pages/sauna.html">Сауна</a></li>
+                        <li><a href="/pages/banquet.html">Банкетный зал</a></li>
+                        <li><a href="/pages/special.html">Спецпредложения</a></li>
+                        <li><a href="/pages/booking.html">Бронирование</a></li>
+                    </ul>
+                </div>
+                <div class="footer-menu-column">
+                    <h3>Информация</h3>
+                    <ul>
+                        <li><a href="/#about">О нас</a></li>
+                        <li><a href="/#services">Услуги</a></li>
+                        <li><a href="/#gallery">Фотогалерея</a></li>
+                        <li><a href="/#reviews">Отзывы</a></li>
+                        <li><a href="/#contacts">Контакты</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>&copy; 2025 Гостиница "Лесной дворик". Все права защищены.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#">Политика конфиденциальности</a>
+                    <a href="#">Пользовательское соглашение</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/script.js"></script>
+    <script src="/js/booking.js"></script>
+</body>
+</html> 

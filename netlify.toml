@@ -1,0 +1,76 @@
+[build]
+  publish = "api/public"
+  command = "npm run build"
+
+[functions]
+  directory = "api/functions"
+  node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/assets/*"
+  to = "/assets/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/css/*"
+  to = "/css/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/js/*"
+  to = "/js/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/admin"
+  to = "/.netlify/functions/admin"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/admin/*"
+  to = "/.netlify/functions/admin"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/bookings/*"
+  to = "/.netlify/functions/bookings/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[headers]
+  for = "/*"
+    [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    Access-Control-Allow-Origin = "*"
+
+[headers]
+  for = "/assets/*"
+    [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[headers]
+  for = "/css/*"
+    [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[headers]
+  for = "/js/*"
+    [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[dev]
+  command = "npm run start"
+  port = 8888
+  publish = "api/public" 
