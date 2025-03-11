@@ -5,7 +5,7 @@
   "main": "api/public/index.html",
   "scripts": {
     "start": "netlify dev",
-    "build": "node -e \"const fs = require('fs'); const dirs = ['api/public/assets', 'api/public/css', 'api/public/js']; dirs.forEach(dir => { if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true }); }); console.log('Build completed');\"",
+    "build": "node -e \"const fs = require('fs'); const path = require('path'); const { execSync } = require('child_process'); const dirs = ['api/public/assets', 'api/public/css', 'api/public/js']; dirs.forEach(dir => { if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true }); }); try { if (process.platform === 'win32') { execSync('xcopy /E /I /Y api\\\\css\\\\* api\\\\public\\\\css\\\\'); execSync('xcopy /E /I /Y api\\\\js\\\\* api\\\\public\\\\js\\\\'); execSync('xcopy /E /I /Y api\\\\assets\\\\* api\\\\public\\\\assets\\\\'); } else { execSync('cp -R api/css/* api/public/css/'); execSync('cp -R api/js/* api/public/js/'); execSync('cp -R api/assets/* api/public/assets/'); } console.log('Files copied successfully'); } catch (err) { console.error('Error copying files:', err); } console.log('Build completed');\"",
     "deploy": "netlify deploy --prod",
     "lint": "echo 'No linting configured'"
   },
