@@ -6,23 +6,23 @@
         }
     },
     "routes": [
+        { "src": "/favicon.ico", "dest": "/api/public/favicon.ico" },
+        { "src": "/css/(.*)", "dest": "/api/css/$1" },
+        { "src": "/js/(.*)", "dest": "/api/js/$1" },
+        { "src": "/assets/(.*)", "dest": "/api/assets/$1" },
+        { "src": "/pages/(.*)", "dest": "/api/pages/$1" },
         { "src": "/admin/index.php", "dest": "/api/admin/index.php" },
         { "src": "/admin/login_form.php", "dest": "/api/admin/login_form.php" },
         { "src": "/admin", "dest": "/api/admin/index.php" },
         { "src": "/admin/(.*)", "dest": "/api/admin/$1" },
-        { "src": "/assets/(.*)", "dest": "/api/assets/$1" },
-        { "src": "/css/(.*)", "dest": "/api/css/$1" },
-        { "src": "/js/(.*)", "dest": "/api/js/$1" },
-        { "src": "/includes/(.*)", "dest": "/api/includes/$1" },
-        { "src": "/pages/(.*)", "dest": "/api/pages/$1" },
-        { "src": "/errors/(.*)", "dest": "/api/errors/$1" },
-        { "src": "/docs/(.*)", "dest": "/api/docs/$1" },
-        { "src": "/data/(.*)", "dest": "/api/data/$1" },
-        { "src": "/php/(.*)", "dest": "/api/php/$1" },
-        { "src": "/public/(.*)", "dest": "/api/public/$1" },
-        { "src": "/(.*)\\.html", "dest": "/api/public/$1.html" },
+        { "src": "/db_test.php", "dest": "/api/db_test.php" },
+        { "src": "/test.php", "dest": "/api/test.php" },
+        { "src": "/test.html", "dest": "/api/public/test.html" },
+        { "src": "/", "dest": "/api/index.html" },
+        { "src": "/static/(.*)", "dest": "/api/static-serve.php" },
+        { "src": "/(.*)\\.html", "dest": "/api/static-serve.php" },
         { "src": "/(.*)\\.php", "dest": "/api/$1.php" },
-        { "src": "/(.*)", "dest": "/api/vercel.php" }
+        { "src": "/(.*)", "dest": "/api/static-serve.php" }
     ],
     "build": {
         "env": {

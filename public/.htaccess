@@ -1,34 +1,15 @@
-DirectoryIndex index.php index.html
-
-# Включаем перезапись URL
 RewriteEngine On
 
-# Если файл или директория существуют, используем их напрямую
-RewriteCond %{REQUEST_FILENAME} -f [OR]
-RewriteCond %{REQUEST_FILENAME} -d
-RewriteRule ^ - [L]
+# Перенаправление на https
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# Обрабатываем специальные статические запросы
-RewriteRule ^public/(.*)$ public/$1 [L]
-RewriteRule ^css/(.*)$ css/$1 [L]
-RewriteRule ^js/(.*)$ js/$1 [L]
-RewriteRule ^assets/(.*)$ assets/$1 [L]
-
-# Перенаправление для PHP файлов
-RewriteRule ^([^.]+)\.php$ $1.php [L]
-
-# Перенаправляем запросы на HTML-файлы в static-serve.php
-RewriteRule ^(.+)\.html$ static-serve.php [L,QSA]
-
-# Для запроса корневой директории используем index.html
-RewriteRule ^$ index.html [L]
-
-# Если файл не существует, перенаправляем на static-serve.php
+# Если файл или директория не существуют, перенаправлять на index.html
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ static-serve.php [L,QSA]
+RewriteRule ^ index.html [L]
 
-# Позволяем PHP-файлам выполняться
+# Обработка PHP файлов
 <FilesMatch "\.php$">
     SetHandler application/x-httpd-php
 </FilesMatch>
